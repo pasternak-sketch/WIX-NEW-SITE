@@ -1,11 +1,2576 @@
-<div align="center">
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שטף הנדסת סביבה | ייעוץ ותכנון תחת גג ירוק אחד</title>
+    <meta name="description" content="שטף הנדסת סביבה - גג אחד לייעוץ בתחומי בניה ירוקה, קרקעות מזוהמות ועמידה בתקנים הנדסיים לצורך קבלת היתרי בניה.">
+    <meta property="og:title" content="שטף הנדסת סביבה | ייעוץ ותכנון תחת גג ירוק אחד">
+    <meta property="og:description" content="שטף הנדסת סביבה - גג אחד לייעוץ בתחומי בניה ירוקה, קרקעות מזוהמות ועמידה בתקנים הנדסיים לצורך קבלת היתרי בניה.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+    <style>
+        :root {
+            /* פלטת צבעים נדגמה מהלוגו */
+            --bg-dark: #204c44;        /* ירוק עמוק מותאם ללוגו */
+            --accent-peach: #e89e54;   /* אפרסק כתמתם מתוך הלוגו */
+            --accent-cream: #f2de9b;   /* קרם מוזהב מתוך הלוגו */
+            --sage: #a2cb85;           /* ירוק בועות מתוך הלוגו */
+            --water: #2d9cb3;          /* כחול מים מתוך הלוגו */
+            --text-dark: #1a332d;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-  <h1>Built with AI Studio</h2>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+        body {
+            font-family: 'Assistant', sans-serif;
+            color: var(--text-dark);
+            background-color: #fdfdfd;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
 
-</div>
+        h1, h2, h3 {
+            font-family: 'Heebo', sans-serif;
+            font-weight: 700;
+        }
+
+        /* נגישות - קישור קופץ */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-peach);
+            color: var(--bg-dark);
+            padding: 10px 20px;
+            z-index: 10000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 0 0 10px 10px;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--bg-dark);
+            padding: 12px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .logo-area:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        .header-logo-svg {
+            height: 52px;
+            width: auto;
+            max-width: 230px;
+            display: block;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .header-logo-svg:hover {
+            filter: drop-shadow(0 2px 8px rgba(232, 158, 84, 0.4));
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--accent-cream);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover, nav a:focus {
+            color: var(--accent-peach);
+            border-bottom-color: var(--accent-peach);
+            outline: none;
+        }
+
+        .phone-cta {
+            background: var(--accent-peach);
+            color: var(--bg-dark);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(45, 90, 78, 0.85), rgba(45, 90, 78, 0.85)), 
+                        url('https://static.wixstatic.com/media/c06ac1_5e42dc46d23740d9ad5639a11f932bc4~mv2.jpg/v1/fill/w_1200,h_800,al_c,q_85/wallpaper.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 5%;
+            color: var(--accent-cream);
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--accent-peach);
+            animation: slideUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Services Grid */
+        .section-padding {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #175345;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            width: 70%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-peach), var(--water));
+            position: absolute;
+            bottom: 0;
+            right: 15%;
+            border-radius: 4px;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            width: 100%;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 32px 28px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            transition: var(--transition);
+            border-right: 6px solid #175345;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-right-color: var(--accent-peach);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-category {
+            display: inline-block;
+            align-self: flex-start;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+
+        .cat-soil {
+            background: #e8f5f1;
+            color: #145947;
+            border: 1px solid #c2e6dc;
+        }
+
+        .cat-building {
+            background: #ebf6f8;
+            color: #136070;
+            border: 1px solid #c4e4eb;
+        }
+
+        .cat-developers {
+            background: #fdf3e7;
+            color: #b85d18;
+            border: 1px solid #f7d5b5;
+        }
+
+        .cat-shetef {
+            background: #faf3de;
+            color: #79520e;
+            border: 1px solid #f2e0b1;
+        }
+
+        .service-card h3 {
+            margin-bottom: 16px;
+            color: #175345; /* ירוק בוטני עמוק ונעים בהרבה מאפור */
+            font-size: 1.45rem;
+            line-height: 1.35;
+            font-weight: 800;
+            transition: var(--transition);
+        }
+
+        .service-card:hover h3 {
+            color: #0e3b31;
+        }
+
+        .service-card ul {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .service-card li {
+            margin-bottom: 11px;
+            padding-right: 25px;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            color: var(--accent-peach);
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+        }
+
+        .value-prop-card {
+            background: linear-gradient(145deg, var(--accent-cream) 0%, #faecd0 100%) !important;
+            border-right-color: var(--accent-peach) !important;
+        }
+
+        /* About Section (Original Text) */
+        .about-section {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-content h2 {
+            color: var(--accent-peach);
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            display: block;
+            transition: transform 0.8s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info {
+            background: var(--bg-dark);
+            color: var(--accent-cream);
+            padding: 60px;
+        }
+
+        .contact-details-list {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            font-size: 1.05rem;
+        }
+
+        .contact-label {
+            font-weight: 800;
+            color: var(--accent-peach);
+            min-width: 60px;
+            font-size: 0.98rem;
+        }
+
+        .contact-val {
+            color: var(--white);
+            line-height: 1.5;
+        }
+
+        .contact-link {
+            color: var(--accent-cream);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-link:hover {
+            color: var(--accent-peach);
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            padding: 60px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--bg-dark);
+            outline: none;
+        }
+
+        .submit-btn {
+            background: var(--accent-peach);
+            color: var(--bg-dark);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-cream);
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a332d;
+            color: var(--accent-cream);
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 5px solid var(--accent-peach);
+        }
+
+        .council-link {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--accent-cream);
+            transition: var(--transition);
+        }
+
+        .council-logo-wrapper {
+            background: #ffffff;
+            padding: 8px 18px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .council-link:hover .council-logo-wrapper {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 25px rgba(224, 164, 113, 0.35);
+        }
+
+        .council-link:hover p {
+            color: var(--accent-peach);
+        }
+
+        .council-logo {
+            max-width: 140px;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Popup & Floating Widget Styles */
+        .opt-launcher {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9990;
+            background: var(--bg-dark);
+            color: var(--accent-cream);
+            border: 2px solid var(--accent-peach);
+            padding: 12px 22px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition);
+            animation: pulseLauncher 2.5s infinite;
+        }
+
+        .opt-launcher:hover {
+            transform: translateY(-4px) scale(1.03);
+            background: #23473d;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+        }
+
+        .opt-launcher .badge-dot {
+            width: 12px;
+            height: 12px;
+            background: #ff5722;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #ff5722;
+            animation: blinkDot 1.5s infinite;
+        }
+
+        @keyframes blinkDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        @keyframes pulseLauncher {
+            0%, 100% { box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+            50% { box-shadow: 0 10px 30px rgba(224, 164, 113, 0.45); }
+        }
+
+        .opt-popup-overlay {
+            position: fixed;
+            top: 75px;
+            left: 20px;
+            bottom: auto;
+            right: auto;
+            z-index: 9999;
+            width: 440px;
+            max-width: calc(100vw - 30px);
+            background: var(--white);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            border: 2px solid var(--accent-peach);
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: top left;
+            opacity: 0;
+            transform: translateY(-20px) scale(0.96);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .opt-popup-overlay.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .nav-opt-btn {
+            background: linear-gradient(135deg, var(--accent-peach) 0%, #d48f57 100%);
+            color: var(--bg-dark);
+            border: none;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.92rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 10px rgba(224, 164, 113, 0.35);
+            transition: var(--transition);
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .nav-opt-btn:hover {
+            background: linear-gradient(135deg, var(--accent-cream) 0%, #f7d898 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(224, 164, 113, 0.45);
+        }
+
+        .badge-dot-nav {
+            width: 8px;
+            height: 8px;
+            background: #e53935;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #e53935;
+            animation: blinkDot 1.4s infinite;
+        }
+
+        .opt-popup-header {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a3830 100%);
+            color: var(--accent-cream);
+            padding: 18px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-peach);
+            position: relative;
+        }
+
+        .opt-header-tag {
+            display: inline-block;
+            background: var(--accent-peach);
+            color: var(--bg-dark);
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .opt-popup-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-cream);
+            line-height: 1.3;
+        }
+
+        .opt-popup-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .opt-action-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--accent-cream);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .opt-action-btn:hover {
+            background: var(--accent-peach);
+            color: var(--bg-dark);
+            transform: scale(1.1);
+        }
+
+        .opt-popup-body {
+            padding: 22px;
+            max-height: 75vh;
+            overflow-y: auto;
+        }
+
+        .opt-highlight-box {
+            background: #FAF7F2;
+            border-right: 4px solid var(--accent-peach);
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .opt-hook-title {
+            color: #b35914;
+            font-size: 1.15rem;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .opt-hook-desc {
+            font-size: 0.95rem;
+            color: #2b3a36;
+            line-height: 1.55;
+        }
+
+        .opt-benefits-list {
+            list-style: none;
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .opt-benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .opt-benefit-bullet {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(232, 158, 84, 0.2);
+            color: #b85d18;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 900;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .opt-form {
+            background: #f4f8f6;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid #dbe7e2;
+        }
+
+        .opt-form-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--bg-dark);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .opt-input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .opt-input-row .opt-input-group {
+            flex: 1;
+        }
+
+        .opt-input-group {
+            margin-bottom: 10px;
+        }
+
+        .opt-input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+            color: var(--text-dark);
+        }
+
+        .opt-input-group input {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1.5px solid #c7d8d2;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            background: #fff;
+        }
+
+        .opt-input-group input:focus {
+            border-color: var(--bg-dark);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(45, 90, 78, 0.15);
+        }
+
+        .opt-submit-btn {
+            background: linear-gradient(135deg, var(--accent-peach) 0%, #d48f57 100%);
+            color: var(--bg-dark);
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(224, 164, 113, 0.35);
+        }
+
+        .opt-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(224, 164, 113, 0.5);
+            background: linear-gradient(135deg, #e7b183 0%, var(--accent-peach) 100%);
+        }
+
+        .opt-direct-call {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #556b64;
+        }
+
+        .opt-direct-call a {
+            color: var(--bg-dark);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .opt-service-featured {
+            background: linear-gradient(145deg, #ffffff 0%, #f4faf7 100%);
+            border: 2px solid var(--accent-peach) !important;
+            border-right: 8px solid var(--accent-peach) !important;
+            position: relative;
+        }
+
+        .opt-badge-pill {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-peach);
+            color: var(--bg-dark);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        /* =====================================================
+           Accessibility (נגישות) Components & Modes - WCAG 2.1 AA
+           ===================================================== */
+
+        /* Screen Reader Only */
+        .sr-only {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+
+        /* Focus Visible Highlight */
+        :focus-visible {
+            outline: 3px solid var(--accent-peach) !important;
+            outline-offset: 3px !important;
+        }
+
+        /* Compact Accessibility Toggle Button (Docked to Bottom-Left Wall - צמוד לתחתית דופן השמאל) */
+        .a11y-floating-btn {
+            position: fixed;
+            bottom: 24px;
+            left: 0;
+            top: auto;
+            transform: none;
+            z-index: 9995;
+            background: var(--bg-dark);
+            color: var(--accent-cream);
+            border: 1.5px solid var(--accent-peach);
+            border-left: none; /* צמוד לחלוטין לדופן השמאלית */
+            width: 38px;
+            height: 42px;
+            border-radius: 0 10px 10px 0; /* לשונית קומפקטית ועדינה */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
+            transition: var(--transition);
+            outline: none;
+            padding: 0;
+        }
+
+        .a11y-floating-btn:hover {
+            transform: translateX(3px);
+            width: 44px;
+            background: #173830;
+            color: #ffffff;
+            box-shadow: 4px 4px 18px rgba(0, 0, 0, 0.35);
+            border-color: #ffffff;
+        }
+
+        .a11y-floating-btn:focus-visible {
+            outline: 2px solid var(--accent-peach) !important;
+            outline-offset: 2px !important;
+        }
+
+        .a11y-floating-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            transition: var(--transition);
+        }
+
+        .a11y-floating-btn .a11y-tooltip {
+            position: absolute;
+            left: calc(100% + 10px);
+            bottom: 6px;
+            top: auto;
+            transform: none;
+            background: var(--bg-dark);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--accent-peach);
+        }
+
+        .a11y-floating-btn:hover .a11y-tooltip,
+        .a11y-floating-btn:focus-visible .a11y-tooltip {
+            opacity: 1;
+        }
+
+        /* Accessibility Panel / Drawer (Docked to Lower-Left Wall) */
+        .a11y-panel {
+            position: fixed;
+            bottom: 74px;
+            left: 0;
+            top: auto;
+            transform: none;
+            width: 350px;
+            max-width: calc(100vw - 20px);
+            max-height: calc(100vh - 100px);
+            background: #ffffff;
+            border-radius: 0 16px 16px 0; /* צמוד לקיר השמאלי */
+            border: 2px solid var(--accent-peach);
+            border-left: none; /* צמוד לחלוטין לקיר */
+            box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.3);
+            z-index: 9996;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: a11ySlideInLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .a11y-panel.active {
+            display: flex;
+        }
+
+        @keyframes a11ySlideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .a11y-panel-header {
+            background: var(--bg-dark);
+            color: var(--accent-cream);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-peach);
+        }
+
+        .a11y-panel-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .a11y-panel-title svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--accent-peach);
+        }
+
+        .a11y-close-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--accent-cream);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .a11y-close-btn:hover {
+            background: var(--accent-peach);
+            color: var(--bg-dark);
+            transform: scale(1.1);
+        }
+
+        .a11y-panel-body {
+            padding: 18px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            background: #fafafa;
+        }
+
+        .a11y-section-title {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--bg-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .a11y-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .a11y-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
+        }
+
+        .a11y-btn {
+            background: #ffffff;
+            color: #2b3a36;
+            border: 1.5px solid #d9e4e0;
+            padding: 10px 8px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-align: center;
+            transition: var(--transition);
+            min-height: 58px;
+        }
+
+        .a11y-btn:hover {
+            background: #f0f7f4;
+            border-color: var(--bg-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .a11y-btn.active {
+            background: var(--bg-dark) !important;
+            color: var(--accent-cream) !important;
+            border-color: var(--accent-peach) !important;
+            box-shadow: 0 4px 12px rgba(45, 90, 78, 0.3);
+        }
+
+        .a11y-btn.active .a11y-icon-box {
+            background: var(--accent-peach);
+            color: var(--bg-dark);
+        }
+
+        .a11y-icon-box {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .a11y-panel-footer {
+            background: #f1f5f3;
+            padding: 12px 18px;
+            border-top: 1px solid #e0ebe6;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .a11y-reset-btn {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+            padding: 9px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .a11y-reset-btn:hover {
+            background: #ffcdd2;
+            color: #b71c1c;
+        }
+
+        .a11y-statement-btn {
+            background: transparent;
+            color: var(--bg-dark);
+            border: none;
+            text-decoration: underline;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            padding: 4px;
+        }
+
+        .a11y-statement-btn:hover {
+            color: var(--accent-peach);
+        }
+
+        .a11y-badge-info {
+            text-align: center;
+            font-size: 0.72rem;
+            color: #6b8079;
+            line-height: 1.3;
+        }
+
+        /* Accessibility Statement Modal */
+        .a11y-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 10005;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(3px);
+        }
+
+        .a11y-modal-overlay.active {
+            display: flex;
+        }
+
+        .a11y-modal-content {
+            background: #ffffff;
+            border-radius: 16px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 3px solid var(--accent-peach);
+            animation: a11yFadeUp 0.3s ease-out;
+        }
+
+        .a11y-modal-header {
+            background: var(--bg-dark);
+            color: var(--accent-cream);
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-peach);
+        }
+
+        .a11y-modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            font-size: 0.95rem;
+            color: #2b3a36;
+            line-height: 1.7;
+        }
+
+        .a11y-modal-body h3 {
+            color: var(--bg-dark);
+            margin: 16px 0 8px 0;
+            font-size: 1.15rem;
+        }
+
+        .a11y-modal-body ul {
+            padding-right: 20px;
+            margin-bottom: 15px;
+        }
+
+        .a11y-modal-body li {
+            margin-bottom: 6px;
+        }
+
+        .a11y-contact-box {
+            background: #f0f7f4;
+            border-right: 4px solid var(--accent-peach);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        /* Reading Guide Line */
+        #a11y-reading-bar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: rgba(224, 164, 113, 0.45);
+            border-top: 2px solid #b35914;
+            border-bottom: 2px solid #b35914;
+            pointer-events: none;
+            z-index: 99999;
+            display: none;
+            box-shadow: 0 0 15px rgba(224, 164, 113, 0.5);
+        }
+
+        /* =====================================================
+           Global Accessibility Classes & Scaling
+           ===================================================== */
+
+        /* Prevent accessibility panel and toolbar from expanding out of bounds when page font-size scales */
+        .a11y-panel,
+        .a11y-modal-content,
+        .a11y-floating-btn,
+        #a11y-announcer {
+            font-size: 15px !important;
+        }
+
+        .a11y-panel .a11y-section-title {
+            font-size: 0.88rem !important;
+        }
+
+        .a11y-panel .a11y-btn {
+            font-size: 0.85rem !important;
+        }
+
+        .a11y-panel .a11y-icon-box {
+            font-size: 1.2rem !important;
+        }
+
+        .a11y-panel .a11y-panel-title {
+            font-size: 1.15rem !important;
+        }
+
+        .a11y-panel .a11y-badge-info {
+            font-size: 0.72rem !important;
+        }
+
+        .a11y-panel .a11y-reset-btn {
+            font-size: 0.88rem !important;
+        }
+
+        .a11y-panel .a11y-statement-btn {
+            font-size: 0.82rem !important;
+        }
+
+        /* High Contrast Dark Mode */
+        body.a11y-contrast-dark {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        body.a11y-contrast-dark header,
+        body.a11y-contrast-dark footer,
+        body.a11y-contrast-dark .service-card,
+        body.a11y-contrast-dark .about-content,
+        body.a11y-contrast-dark .contact-grid,
+        body.a11y-contrast-dark .opt-popup-overlay,
+        body.a11y-contrast-dark .a11y-panel {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            border: 2px solid #ffffff !important;
+        }
+        body.a11y-contrast-dark h1,
+        body.a11y-contrast-dark h2,
+        body.a11y-contrast-dark h3,
+        body.a11y-contrast-dark .brand-text,
+        body.a11y-contrast-dark .brand-sub,
+        body.a11y-contrast-dark .opt-hook-title {
+            color: #ffd54f !important;
+        }
+        body.a11y-contrast-dark .logo-badge {
+            border-color: #ffd54f !important;
+            background: #000 !important;
+        }
+        body.a11y-contrast-dark .logo-divider {
+            background: #ffd54f !important;
+        }
+        body.a11y-contrast-dark a {
+            color: #80d8ff !important;
+        }
+        body.a11y-contrast-dark input,
+        body.a11y-contrast-dark textarea {
+            background: #222 !important;
+            color: #fff !important;
+            border: 2px solid #fff !important;
+        }
+
+        /* Yellow on Black Mode */
+        body.a11y-contrast-yellow {
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+        }
+        body.a11y-contrast-yellow * {
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+            border-color: #ffff00 !important;
+        }
+        body.a11y-contrast-yellow input,
+        body.a11y-contrast-yellow textarea,
+        body.a11y-contrast-yellow button {
+            border: 2px solid #ffff00 !important;
+        }
+
+        /* Inverted Light Mode */
+        body.a11y-contrast-light {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+        }
+        body.a11y-contrast-light header,
+        body.a11y-contrast-light footer,
+        body.a11y-contrast-light .service-card,
+        body.a11y-contrast-light .contact-grid {
+            background-color: #f5f5f5 !important;
+            color: #000000 !important;
+            border: 2px solid #000000 !important;
+        }
+        body.a11y-contrast-light h1,
+        body.a11y-contrast-light h2,
+        body.a11y-contrast-light h3,
+        body.a11y-contrast-light .brand-text {
+            color: #000000 !important;
+        }
+
+        /* Grayscale - applied to content containers to prevent breaking position:fixed coordinate frames */
+        body.a11y-grayscale header,
+        body.a11y-grayscale main,
+        body.a11y-grayscale footer,
+        body.a11y-grayscale .opt-popup-body,
+        body.a11y-grayscale .a11y-modal-body {
+            filter: grayscale(100%) !important;
+        }
+
+        body.a11y-grayscale #scroll-progress-bar {
+            background: #777777 !important;
+            box-shadow: none !important;
+        }
+
+        /* Highlight Links */
+        body.a11y-highlight-links a {
+            text-decoration: underline 3px !important;
+            font-weight: 900 !important;
+            background-color: #ffeb3b !important;
+            color: #000000 !important;
+            padding: 2px 4px !important;
+            border-radius: 3px !important;
+        }
+
+        /* Readable Font */
+        body.a11y-readable-font,
+        body.a11y-readable-font * {
+            font-family: Arial, Tahoma, Helvetica, sans-serif !important;
+            letter-spacing: 0.03em !important;
+        }
+
+        /* Text Spacing */
+        body.a11y-text-spacing,
+        body.a11y-text-spacing * {
+            line-height: 2 !important;
+            letter-spacing: 0.12em !important;
+            word-spacing: 0.16em !important;
+        }
+
+        /* Stop Animations */
+        body.a11y-stop-animations,
+        body.a11y-stop-animations * {
+            animation: none !important;
+            transition: none !important;
+            scroll-behavior: auto !important;
+        }
+
+        /* Large Cursor */
+        body.a11y-big-cursor,
+        body.a11y-big-cursor * {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24' fill='%232D5A4E' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M3 3l7 18 3-7 7-3L3 3z'/%3E%3C/svg%3E"), auto !important;
+        }
+
+        /* Top Scroll Progress Bar */
+        #scroll-progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.08);
+            z-index: 999999;
+            pointer-events: none;
+        }
+
+        #scroll-progress-bar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to left, var(--accent-peach), #e5985b, var(--water));
+            box-shadow: 0 1px 8px rgba(224, 164, 113, 0.85);
+            transition: width 0.05s ease-out;
+        }
+
+        body.a11y-stop-animations #scroll-progress-bar {
+            transition: none !important;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            header { padding: 12px 4%; }
+            .header-container {
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: space-between;
+            }
+            .logo-area {
+                order: 1;
+            }
+            .phone-cta {
+                order: 2;
+                padding: 6px 14px;
+                font-size: 0.9rem;
+            }
+            nav {
+                order: 3;
+                width: 100%;
+            }
+            nav ul {
+                gap: 10px;
+                font-size: 0.9rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+            }
+            .header-logo-svg {
+                height: 42px;
+                max-width: 180px;
+            }
+            .contact-grid { grid-template-columns: 1fr; }
+            .section-padding { padding: 45px 5%; }
+            .section-title { margin-bottom: 30px; }
+            .section-title h2 { font-size: 1.9rem; }
+            .services-container {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+            .service-card {
+                padding: 22px 18px !important;
+                border-radius: 16px !important;
+                border-right-width: 5px !important;
+            }
+            .service-category {
+                font-size: 0.75rem;
+                padding: 2px 8px;
+                margin-bottom: 10px;
+            }
+            .service-card h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.35;
+                margin-bottom: 12px !important;
+                color: #175345 !important;
+            }
+            .service-card li {
+                margin-bottom: 9px !important;
+                font-size: 0.95rem !important;
+                padding-right: 22px !important;
+                line-height: 1.45;
+            }
+            .opt-service-featured {
+                padding-top: 20px !important;
+            }
+            .opt-badge-pill {
+                position: static !important;
+                display: inline-block !important;
+                margin-bottom: 12px !important;
+            }
+            .a11y-floating-btn {
+                bottom: 20px;
+                top: auto;
+                transform: none;
+                left: 0;
+                width: 36px;
+                height: 38px;
+                border-radius: 0 8px 8px 0;
+                border-left: none;
+            }
+            .a11y-floating-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+            .a11y-panel {
+                bottom: 66px;
+                top: auto;
+                transform: none;
+                left: 0;
+                right: auto;
+                width: 320px;
+                max-width: calc(100vw - 16px);
+                max-height: calc(100vh - 85px);
+                border-radius: 0 14px 14px 0;
+                border-left: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-logo-svg {
+                height: 36px;
+                max-width: 150px;
+            }
+            .opt-popup-overlay {
+                top: 75px;
+                left: 10px;
+                right: 10px;
+                bottom: auto;
+                width: auto;
+                max-width: none;
+            }
+            .opt-input-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            .opt-launcher {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            .a11y-floating-btn {
+                bottom: 18px;
+                top: auto;
+                transform: none;
+                left: 0;
+                width: 34px;
+                height: 36px;
+                border-radius: 0 8px 8px 0;
+                border-left: none;
+            }
+            .a11y-floating-btn svg {
+                width: 18px;
+                height: 18px;
+            }
+            .a11y-panel {
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                max-width: 100vw;
+                max-height: 82vh;
+                transform: none;
+                border-radius: 18px 18px 0 0;
+                border: 2px solid var(--accent-peach);
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Slim Scroll Progress Bar -->
+    <div id="scroll-progress-container" aria-hidden="true">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <a href="#main-content" class="skip-link">דלג לתוכן המרכזי</a>
+
+    <header role="banner">
+        <div class="header-container">
+            <a href="#home" class="logo-area" aria-label="שטף הנדסת סביבה - חזרה לראש הדף">
+                <svg class="header-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 280" width="100%" height="100%" role="img" aria-label="שטף SHETEF">
+                    <defs>
+                        <!-- Gradient for 'SHETEF' text going from warm orange-tan to a lighter golden hue -->
+                        <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#e89e54" />
+                            <stop offset="50%" stop-color="#e9b86d" />
+                            <stop offset="100%" stop-color="#f2de9b" />
+                        </linearGradient>
+
+                        <!-- Clip path for the circular icon on the left -->
+                        <clipPath id="circleClip">
+                            <circle cx="140" cy="140" r="115" />
+                        </clipPath>
+                    </defs>
+
+                    <!-- Dark teal/green background matching the brand -->
+                    <rect width="1000" height="280" fill="#204c44" rx="14" />
+
+                    <g clip-path="url(#circleClip)">
+                        <circle cx="140" cy="140" r="115" fill="#204c44" />
+                        <!-- Cyan water base area in the lower right/middle of the circle -->
+                        <path d="M 50,180 Q 100,160 160,190 T 260,200 L 260,260 L 50,260 Z" fill="#2d9cb3" />
+                        <path d="M 120,220 Q 180,200 255,230 L 255,260 L 120,260 Z" fill="#1b7d93" opacity="0.6" />
+
+                        <!-- Bubbles / circles of various sizes inside the icon -->
+                        <!-- Light green bubbles -->
+                        <circle cx="140" cy="190" r="42" fill="#a2cb85" />
+                        <circle cx="85" cy="145" r="28" fill="#a2cb85" />
+                        <circle cx="130" cy="120" r="24" fill="#a2cb85" />
+                        <circle cx="170" cy="145" r="20" fill="#a2cb85" />
+                        <circle cx="80" cy="195" r="22" fill="#a2cb85" />
+                        <circle cx="195" cy="190" r="25" fill="#a2cb85" />
+                        <circle cx="215" cy="140" r="18" fill="#a2cb85" />
+                        <circle cx="225" cy="95" r="22" fill="#a2cb85" />
+                        <circle cx="180" cy="95" r="19" fill="#a2cb85" />
+                        <circle cx="135" cy="75" r="16" fill="#a2cb85" />
+                        <circle cx="95" cy="90" r="18" fill="#a2cb85" />
+                        <circle cx="60" cy="110" r="15" fill="#a2cb85" />
+                        <circle cx="60" cy="225" r="19" fill="#a2cb85" />
+                        <circle cx="105" cy="235" r="16" fill="#a2cb85" />
+                        <circle cx="160" cy="245" r="20" fill="#a2cb85" />
+                        <circle cx="205" cy="225" r="15" fill="#a2cb85" />
+                        <circle cx="235" cy="180" r="14" fill="#a2cb85" />
+                        
+                        <!-- Smaller accent bubbles -->
+                        <circle cx="50" cy="70" r="11" fill="#a2cb85" />
+                        <circle cx="75" cy="65" r="10" fill="#a2cb85" />
+                        <circle cx="115" cy="55" r="9" fill="#a2cb85" />
+                        <circle cx="160" cy="60" r="11" fill="#a2cb85" />
+                        <circle cx="200" cy="65" r="12" fill="#a2cb85" />
+                        <circle cx="235" cy="60" r="10" fill="#a2cb85" />
+                        <circle cx="250" cy="115" r="11" fill="#a2cb85" />
+                        <circle cx="245" cy="155" r="9" fill="#a2cb85" />
+                        <circle cx="110" cy="165" r="12" fill="#a2cb85" />
+                        <circle cx="150" cy="160" r="10" fill="#a2cb85" />
+                        <circle cx="45" cy="170" r="9" fill="#a2cb85" />
+                        <circle cx="100" cy="205" r="11" fill="#a2cb85" />
+                        
+                        <!-- Tiny floating bubbles -->
+                        <circle cx="65" cy="45" r="6" fill="#a2cb85" />
+                        <circle cx="95" cy="40" r="7" fill="#a2cb85" />
+                        <circle cx="130" cy="40" r="5" fill="#a2cb85" />
+                        <circle cx="175" cy="45" r="6" fill="#a2cb85" />
+                        <circle cx="215" cy="45" r="7" fill="#a2cb85" />
+                        <circle cx="255" cy="80" r="8" fill="#a2cb85" />
+                        <circle cx="260" cy="130" r="7" fill="#a2cb85" />
+                        <circle cx="230" cy="210" r="8" fill="#a2cb85" />
+                        <circle cx="180" cy="225" r="9" fill="#a2cb85" />
+                        <circle cx="135" cy="245" r="7" fill="#a2cb85" />
+                        <circle cx="85" cy="250" r="8" fill="#a2cb85" />
+                        <circle cx="45" cy="200" r="7" fill="#a2cb85" />
+                        <circle cx="35" cy="140" r="8" fill="#a2cb85" />
+                    </g>
+
+                    <!-- Circular border for icon -->
+                    <circle cx="140" cy="140" r="115" fill="none" stroke="#e89e54" stroke-width="4" opacity="0.9" />
+
+                    <!-- Logo Typography (English Only, LTR Aligned, Shifted to the Right) -->
+                    <g direction="ltr" style="direction: ltr; text-anchor: start;">
+                        <text x="325" y="152" font-family="'Heebo', 'Montserrat', sans-serif" font-weight="900" font-size="124" fill="url(#textGrad)" letter-spacing="8">SHETEF</text>
+                        <text x="328" y="214" font-family="'Assistant', 'Heebo', sans-serif" font-weight="700" font-size="35" fill="#a2cb85" letter-spacing="5.5">ENVIRONMENTAL ENGINEERING</text>
+                    </g>
+                </svg>
+            </a>
+            <nav aria-label="תפריט ראשי">
+                <ul>
+                    <li><a href="#home">בית</a></li>
+                    <li><a href="#services">שירותים</a></li>
+                    <li><a href="#about">אודות</a></li>
+                    <li><a href="#contact">צור קשר</a></li>
+                    <li>
+                        <button type="button" class="nav-opt-btn" id="navOptBtn" onclick="toggleOptPopup()" aria-haspopup="dialog" aria-expanded="false" title="בדיקת חיסכון ואופטימיזציה ליזמים">
+                            <span class="badge-dot-nav"></span>
+                            <span>בדיקת חיסכון ליזמים</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <a href="tel:046060111" class="phone-cta">
+                <span>04-6060111</span>
+            </a>
+        </div>
+    </header>
+
+    <main id="main-content">
+        
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h1>שטף הנדסת סביבה</h1>
+            <p>ייעוץ ותכנון תחת גג ירוק אחד. מובילים את תחום הנדסת הסביבה בישראל עם ראייה טכנו-כלכלית מנצחת.</p>
+            <a href="#contact" class="submit-btn" style="width: auto; margin-top: 20px;">התחילו עכשיו</a>
+        </section>
+
+        <!-- About Section (Original Data) -->
+        <section class="section-padding about-section" id="about">
+            <div class="about-content">
+                <h2>המומחיות שלנו היא ההצלחה שלך</h2>
+                <p>עם מעל 18 שנות ניסיון בהנדסה אזרחית, קרקע-הידרולוגיה וסביבה, אנו מהחברות המובילות בארץ בתחומינו.</p>
+                <p>ההצלחה שלנו מורכבת מצוות מהנדסים מגובש, מומחים ויועצים, המשלבים את כל אלו לפתרון השלם, המהיר, והנכון ביותר עבורך.</p>
+                <p>להשגת מטרה זו, אנו מטפלים רגולטורית בכל תחומי הנדסת הסביבה ובראייה טכנו-כלכלית.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://static.wixstatic.com/media/c06ac1_3746c3b84f79460b8fd9b9966a413e35~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80/project.jpg" alt="פרויקט הנדסי" referrerpolicy="no-referrer">
+            </div>
+        </section>
+
+        <!-- Services Section (Original List) -->
+        <section class="section-padding" id="services">
+            <div class="section-title">
+                <h2>השירותים שלנו</h2>
+            </div>
+            <div class="services-container">
+                <!-- Group 1 -->
+                <div class="service-card">
+                    <span class="service-category cat-soil">תשתיות וקרקע</span>
+                    <h3>הנדסת סביבה - קרקע והידרולוגיה</h3>
+                    <ul>
+                        <li>אסדרת קרקעות מזוהמות</li>
+                        <li>טיפול בגזי קרקע</li>
+                        <li>ניקוז, טיפול והגנה למי תהום</li>
+                    </ul>
+                </div>
+                <!-- Group 2 -->
+                <div class="service-card">
+                    <span class="service-category cat-building">תקנים ורישוי</span>
+                    <h3>מבנים ובריאות הציבור</h3>
+                    <ul>
+                        <li>ניהול תקן בניה ירוקה</li>
+                        <li>ייעוץ תרמי</li>
+                        <li>מידול אנרגטי</li>
+                        <li>הידרולוגיה וטיפול בנגר</li>
+                        <li>אקוסטיקה הנדסית</li>
+                        <li>איטום ומיגון מגזי קרקע</li>
+                        <li>תכנון הגנות סביבתיות למפעלים</li>
+                    </ul>
+                </div>
+                <!-- New Feature for Developers -->
+                <div class="service-card opt-service-featured" id="optServiceCard">
+                    <div class="opt-badge-pill">שירות בלעדי ליזמים</div>
+                    <h3 style="color: #b85d18; margin-top: 6px;">אופטימיזציה ובקרה ירוקה</h3>
+                    <p style="font-size: 0.95rem; margin-bottom: 15px; font-weight: 600; color: var(--bg-dark);">יש לכם כבר יועץ? חוסכים לכם מאות אלפי ₪ עוד לפני הזמנת החומרים!</p>
+                    <ul>
+                        <li><strong>איתור בידודים כפולים</strong> וכשלים מעבר לדרישות התקן</li>
+                        <li><strong>חיסכון כספי אדיר ברכש</strong> לפני ביצוע ההזמנות</li>
+                        <li><strong>בקרה ירוקה מקיפה (QA)</strong> לעמידה מלאה בתקנים</li>
+                        <li><strong>ראש שקט וליווי</strong> מול ועדות התכנון והיתרי הבניה</li>
+                    </ul>
+                    <button type="button" class="submit-btn" onclick="openOptPopup()" style="padding: 12px 18px; margin-top: 15px; font-size: 0.95rem; width: 100%;">לפרטים ובדיקת היתכנות לחיסכון ←</button>
+                </div>
+                <!-- Value Prop -->
+                <div class="service-card value-prop-card">
+                    <span class="service-category cat-shetef">היתרון ההנדסי</span>
+                    <h3 style="color: #175345;">למה "שטף"?</h3>
+                    <ul>
+                        <li>צוות מגובש ומסונכרן - ללא דוחות סותרים</li>
+                        <li>ראיה אסטרטגית של צרכי הלקוח</li>
+                        <li>חיסכון בעלויות ביצוע</li>
+                        <li>ליווי צמוד עד לקבלת היתרי בניה</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section-padding" id="contact">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>נשמח לשמוע מכם</h2>
+                    <p>הצוות שלנו זמין לכל שאלה מקצועית.</p>
+                    <div class="contact-details-list">
+                        <div class="contact-item">
+                            <span class="contact-label">כתובת:</span>
+                            <span class="contact-val">ח'ורי 2, מגדל הנביאים, חיפה</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">טלפון:</span>
+                            <a href="tel:046060111" class="contact-val contact-link">04-6060111</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">פקס:</span>
+                            <span class="contact-val">077-4448345</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">דוא"ל:</span>
+                            <a href="mailto:info@shetef.co.il" class="contact-val contact-link">info@shetef.co.il</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">שם מלא *</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">דואר אלקטרוני</label>
+                            <input type="email" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">טלפון</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="msg">תוכן הפנייה</label>
+                            <textarea id="msg" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">שלח פנייה</button>
+                        <div id="formFeedback" style="display: none; margin-top: 15px; padding: 12px; border-radius: 8px; font-weight: 600; text-align: center;"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="https://ilgbc.org/" target="_blank" rel="noopener noreferrer" class="council-link" title="המועצה הישראלית לבנייה ירוקה (נפתח בחלון חדש)">
+            <div class="council-logo-wrapper">
+                <img src="https://static.wixstatic.com/media/c06ac1_151d67fd4731439daa353d23f1e51dab~mv2.jpg" alt="חברים במועצה לבניה ירוקה" class="council-logo" referrerpolicy="no-referrer">
+            </div>
+            <p>חברים במועצה הישראלית לבנייה ירוקה ↗</p>
+        </a>
+        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">© 2024 שטף הנדסת סביבה. כל הזכויות שמורות.</p>
+    </footer>
+
+    <!-- Optimization Pop-Up Card -->
+    <div class="opt-popup-overlay" id="optPopup" role="dialog" aria-labelledby="optPopupTitle" aria-modal="true">
+        <div class="opt-popup-header">
+            <div>
+                <span class="opt-header-tag">בלעדי ליזמים וקבלנים</span>
+                <h3 class="opt-popup-title" id="optPopupTitle">אופטימיזציה ובקרה ירוקה</h3>
+            </div>
+            <div class="opt-popup-actions">
+                <button type="button" class="opt-action-btn" onclick="minimizeOptPopup()" title="מזער" aria-label="מזער חלון">−</button>
+                <button type="button" class="opt-action-btn" onclick="closeOptPopup()" title="סגור" aria-label="סגור חלון">✕</button>
+            </div>
+        </div>
+
+        <div class="opt-popup-body">
+            <div class="opt-highlight-box">
+                <div class="opt-hook-title">כבר יש לכם יועץ בפרויקט?</div>
+                <div class="opt-hook-desc">
+                    אנו חוסכים לכם <strong>מאות אלפי שקלים</strong> עוד לפני שאתם מוציאים כסף על הזמנת חומרי בנייה!
+                </div>
+            </div>
+
+            <ul class="opt-benefits-list">
+                <li class="opt-benefit-item">
+                    <span class="opt-benefit-bullet" aria-hidden="true">✓</span>
+                    <div><strong>חיסכון כספי אדיר ברכש:</strong> איתור בידודים כפולים וחומרים מיותרים שתוכננו שלא לצורך התקן.</div>
+                </li>
+                <li class="opt-benefit-item">
+                    <span class="opt-benefit-bullet" aria-hidden="true">✓</span>
+                    <div><strong>בקרה ירוקה מקיפה וראש שקט:</strong> וידוא הנדסי קפדני שכל התוכניות עומדות בתקנים (ת"י 5281) לקראת היתר וטופס 4 ללא שום הפתעות.</div>
+                </li>
+                <li class="opt-benefit-item">
+                    <span class="opt-benefit-bullet" aria-hidden="true">✓</span>
+                    <div><strong>עוצרים את הבזבוז בזמן:</strong> ביצוע האופטימיזציה בשלב התוכניות מונע הזמנות שגויות וכשלים יקרים בשטח.</div>
+                </li>
+                <li class="opt-benefit-item">
+                    <span class="opt-benefit-bullet" aria-hidden="true">✓</span>
+                    <div><strong>מוכח בהצלחה:</strong> שירות מבוקש שכבר מיושם בהצלחה אצל גדולי היזמים בישראל ופתוח כעת לפרויקטים חדשים.</div>
+                </li>
+            </ul>
+
+            <div class="opt-form">
+                <div class="opt-form-title">רוצים לבדוק כמה תוכלו לחסוך בפרויקט שלכם?</div>
+                <form id="optPopupForm">
+                    <div class="opt-input-row">
+                        <div class="opt-input-group">
+                            <label for="optName">שם היזם / איש קשר *</label>
+                            <input type="text" id="optName" required placeholder="ישראל ישראלי">
+                        </div>
+                        <div class="opt-input-group">
+                            <label for="optPhone">טלפון לחזרה *</label>
+                            <input type="tel" id="optPhone" required placeholder="050-0000000">
+                        </div>
+                    </div>
+                    <div class="opt-input-group">
+                        <label for="optProject">שם הפרויקט / עיר (אופציונלי)</label>
+                        <input type="text" id="optProject" placeholder="לדוגמה: מגדל מגורים חיפה">
+                    </div>
+                    <button type="submit" class="opt-submit-btn" id="optSubmitBtn">בדיקת היתכנות לחיסכון בפרויקט ←</button>
+                    <div id="optFormFeedback" style="display: none; margin-top: 10px; padding: 10px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-align: center;"></div>
+                </form>
+                <div class="opt-direct-call">
+                    או התקשרו ישירות להתייעצות: <a href="tel:046060111">04-6060111</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessibility Screen Reader Announcer -->
+    <div id="a11y-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Reading Guide Bar -->
+    <div id="a11y-reading-bar" aria-hidden="true"></div>
+
+    <!-- Accessibility Pinned Button (Left Wall Docked) -->
+    <button type="button" class="a11y-floating-btn" id="a11yToggleBtn" aria-label="פתיחת סרגל נגישות (מקש קיצור Alt+A)" aria-haspopup="dialog" aria-expanded="false" title="תפריט נגישות">
+        <span class="a11y-tooltip">תפריט נגישות (Alt+A)</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+        </svg>
+    </button>
+
+    <!-- Accessibility Panel -->
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-labelledby="a11yTitle" aria-modal="true" aria-hidden="true">
+        <div class="a11y-panel-header">
+            <h2 class="a11y-panel-title" id="a11yTitle">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+                </svg>
+                סרגל נגישות
+            </h2>
+            <button type="button" class="a11y-close-btn" id="a11yCloseBtn" aria-label="סגירת סרגל נגישות" title="סגור (Esc)">✕</button>
+        </div>
+
+        <div class="a11y-panel-body">
+            <!-- Text Size Controls -->
+            <div>
+                <div class="a11y-section-title">
+                    <span>🔤 גודל טקסט</span>
+                    <span id="a11yFontIndicator" style="margin-right:auto; background:var(--accent-cream); color:var(--bg-dark); padding:2px 8px; border-radius:12px; font-size:0.75rem; font-weight:800;" aria-label="גודל נוכחי">100%</span>
+                </div>
+                <div class="a11y-grid-3">
+                    <button type="button" class="a11y-btn" id="a11yFontIncrease" aria-label="הגדל גודל גופן (המשך ללחוץ להגדלה נוספת)">
+                        <span class="a11y-icon-box" style="font-weight:900;">A+</span>
+                        <span>הגדל</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yFontReset" aria-label="אפס גודל גופן לברירת מחדל">
+                        <span class="a11y-icon-box">A</span>
+                        <span>100% רגיל</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yFontDecrease" aria-label="הקטן גודל גופן">
+                        <span class="a11y-icon-box" style="font-size:0.9rem;">A-</span>
+                        <span>הקטן</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contrast & Display Modes -->
+            <div>
+                <div class="a11y-section-title">
+                    <span>🎨 צבעים וניגודיות</span>
+                </div>
+                <div class="a11y-grid">
+                    <button type="button" class="a11y-btn" id="a11yContrastDark" aria-pressed="false">
+                        <span class="a11y-icon-box">🌙</span>
+                        <span>ניגודיות כהה</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yContrastYellow" aria-pressed="false">
+                        <span class="a11y-icon-box">🟡</span>
+                        <span>שחור-צהוב</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yContrastLight" aria-pressed="false">
+                        <span class="a11y-icon-box">☀️</span>
+                        <span>ניגודיות בהירה</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yGrayscale" aria-pressed="false">
+                        <span class="a11y-icon-box">⚪</span>
+                        <span>גווני אפור</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content & Readability Controls -->
+            <div>
+                <div class="a11y-section-title">
+                    <span>📖 קריאות ותוכן</span>
+                </div>
+                <div class="a11y-grid">
+                    <button type="button" class="a11y-btn" id="a11yHighlightLinks" aria-pressed="false">
+                        <span class="a11y-icon-box">🔗</span>
+                        <span>הדגשת קישורים</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yReadableFont" aria-pressed="false">
+                        <span class="a11y-icon-box">🔠</span>
+                        <span>גופן קריא</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yTextSpacing" aria-pressed="false">
+                        <span class="a11y-icon-box">↔️</span>
+                        <span>ריווח טקסט</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yBigCursor" aria-pressed="false">
+                        <span class="a11y-icon-box">🖱️</span>
+                        <span>סמן מוגדל</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yReadingGuide" aria-pressed="false">
+                        <span class="a11y-icon-box">📏</span>
+                        <span>סרגל קריאה</span>
+                    </button>
+                    <button type="button" class="a11y-btn" id="a11yStopAnimations" aria-pressed="false">
+                        <span class="a11y-icon-box">⏸️</span>
+                        <span>עצירת תנועה</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="a11y-panel-footer">
+            <button type="button" class="a11y-reset-btn" id="a11yResetAll" aria-label="איפוס כל הגדרות הנגישות">
+                <span>🔄</span>
+                <span>איפוס כל ההגדרות</span>
+            </button>
+            <button type="button" class="a11y-statement-btn" id="a11yOpenStatement" aria-haspopup="dialog">
+                הצהרת נגישות החברה
+            </button>
+            <div class="a11y-badge-info">
+                עומד בתקן ישראלי ת״י 5568 ברמת AA ו-WCAG 2.1
+            </div>
+        </div>
+    </div>
+
+    <!-- Accessibility Statement Modal -->
+    <div class="a11y-modal-overlay" id="a11yModal" role="dialog" aria-labelledby="a11yStatementTitle" aria-modal="true" aria-hidden="true">
+        <div class="a11y-modal-content">
+            <div class="a11y-modal-header">
+                <h2 id="a11yStatementTitle" style="color:var(--accent-cream); margin:0; font-size:1.3rem;">📜 הצהרת נגישות</h2>
+                <button type="button" class="a11y-close-btn" id="a11yCloseStatement" aria-label="סגירת הצהרת נגישות">✕</button>
+            </div>
+            <div class="a11y-modal-body">
+                <p>חברת <strong>שטף הנדסת סביבה</strong> מחויבת לספק חוויית גלישה נגישה, שוויונית ומכבדת לכלל האוכלוסייה, לרבות אנשים עם מוגבלויות, בהתאם לחוק שוויון זכויות לאנשים עם מוגבלות ותקנות הנגישות (ת״י 5568 ברמת AA המבוסס על הנחיות WCAG 2.1 הבינלאומיות).</p>
+
+                <h3>התאמות הנגישות באתר</h3>
+                <ul>
+                    <li><strong>סרגל נגישות ייעודי:</strong> מאפשר התאמת גדלי גופנים, שינוי ניגודיות, הדגשת קישורים, מעבר לגופן קריא, עצירת אנימציות, סרגל קריאה ועוד.</li>
+                    <li><strong>ניווט מקלדת:</strong> תמיכה מלאה בניווט באמצעות מקש Tab, מקשי חיצים ו-Enter. מקש קיצור <code>Alt + A</code> לפתיחת סרגל הנגישות, ומקש <code>Escape</code> לסגירת חלונות.</li>
+                    <li><strong>תאימות לקוראי מסך:</strong> שימוש בתגיות סמנטיות, מבנה כותרות היררכי, מאפייני ARIA והסברים חלופיים לתמונות (Alt).</li>
+                    <li><strong>מעקף בלוקים:</strong> קישור מהיר "דלג לתוכן המרכזי" בראש העמוד.</li>
+                </ul>
+
+                <h3>הסדרי נגישות פיזיים במשרדי החברה</h3>
+                <ul>
+                    <li><strong>כתובת:</strong> רחוב ח'ורי 2, מגדל הנביאים, חיפה.</li>
+                    <li>קיימות חניות נכים מוסדרות בחניון המגדל.</li>
+                    <li>קיימת גישה רציפה ונגישה מהחניון והרחוב למעליות המבנה ולמשרדי החברה.</li>
+                    <li>במבנה קיימים שירותי נכים נגישים.</li>
+                </ul>
+
+                <div class="a11y-contact-box">
+                    <h3 style="margin-top:0;">פרטי רכז הנגישות ופניות בנושא</h3>
+                    <p>אם נתקלתם בקושי או שיש לכם הצעה לשיפור הנגישות, נשמח לעמוד לרשותכם:</p>
+                    <p><strong>רכז נגישות:</strong> הנהלת שטף הנדסת סביבה</p>
+                    <p><strong>טלפון:</strong> 04-6060111</p>
+                    <p><strong>פקס:</strong> 077-4448345</p>
+                    <p><strong>דוא"ל:</strong> info@shetef.co.il</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // אנימציית הופעה בגלילה (Intersection Observer)
+        const observerOptions = { threshold: 0.02, rootMargin: "0px 0px 50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .about-content, .contact-grid').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(16px)";
+            el.style.transition = "opacity 0.45s ease-out, transform 0.45s ease-out";
+            observer.observe(el);
+        });
+
+        // גיבוי בטיחות: מוודא שכל הכרטיסיות נראות במלואן תמיד (לרבות במובייל)
+        setTimeout(() => {
+            document.querySelectorAll('.service-card, .about-content, .contact-grid').forEach(el => {
+                el.style.opacity = "1";
+                el.style.transform = "translateY(0)";
+            });
+        }, 400);
+
+        // טיפול בטופס יצירת קשר ראשי
+        const contactForm = document.getElementById('contactForm');
+        const formFeedback = document.getElementById('formFeedback');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const msg = document.getElementById('msg').value;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'שולח...';
+
+                try {
+                    const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, phone, msg, source: 'main_contact_form' })
+                    });
+                    const data = await res.json();
+                    formFeedback.style.display = 'block';
+                    formFeedback.style.backgroundColor = '#e8f5e9';
+                    formFeedback.style.color = '#2e7d32';
+                    formFeedback.textContent = data.message || 'פנייתך התקבלה בהצלחה!';
+                    contactForm.reset();
+                } catch (err) {
+                    formFeedback.style.display = 'block';
+                    formFeedback.style.backgroundColor = '#ffebee';
+                    formFeedback.style.color = '#c62828';
+                    formFeedback.textContent = 'אירעה שגיאה בשליחה. אנא נסו שוב או התקשרו ישירות.';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'שלח פנייה';
+                }
+            });
+        }
+
+        // ניהול חלון פופ-אפ אופטימיזציה ליזמים
+        const optPopup = document.getElementById('optPopup');
+        const optPopupForm = document.getElementById('optPopupForm');
+        const optFormFeedback = document.getElementById('optFormFeedback');
+        const optSubmitBtn = document.getElementById('optSubmitBtn');
+
+        function openOptPopup() {
+            if (optPopup) {
+                optPopup.classList.add('active');
+            }
+            const navBtn = document.getElementById('navOptBtn');
+            if (navBtn) {
+                navBtn.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        function closeOptPopup() {
+            if (optPopup) {
+                optPopup.classList.remove('active');
+            }
+            const navBtn = document.getElementById('navOptBtn');
+            if (navBtn) {
+                navBtn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function toggleOptPopup() {
+            if (optPopup && optPopup.classList.contains('active')) {
+                closeOptPopup();
+            } else {
+                openOptPopup();
+            }
+        }
+
+        function minimizeOptPopup() {
+            closeOptPopup();
+        }
+
+        // שליחת טופס הפופ-אפ
+        if (optPopupForm) {
+            optPopupForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('optName').value;
+                const phone = document.getElementById('optPhone').value;
+                const project = document.getElementById('optProject').value;
+
+                optSubmitBtn.disabled = true;
+                optSubmitBtn.textContent = 'בודק ושולח...';
+
+                try {
+                    const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name,
+                            phone,
+                            project,
+                            msg: `פנייה מחלון אופטימיזציה ליזמים - שם פרויקט: ${project || 'לא צוין'}`,
+                            source: 'optimization_popup'
+                        })
+                    });
+                    const data = await res.json();
+                    optFormFeedback.style.display = 'block';
+                    optFormFeedback.style.backgroundColor = '#e8f5e9';
+                    optFormFeedback.style.color = '#2e7d32';
+                    optFormFeedback.textContent = data.message || 'פנייתך התקבלה בהצלחה! מומחה יחזור אליך בהקדם.';
+                    optPopupForm.reset();
+                    
+                    // סגירה הדרגתית לאחר שליחה מוצלחת
+                    setTimeout(() => {
+                        closeOptPopup();
+                        optFormFeedback.style.display = 'none';
+                    }, 3500);
+                } catch (err) {
+                    optFormFeedback.style.display = 'block';
+                    optFormFeedback.style.backgroundColor = '#ffebee';
+                    optFormFeedback.style.color = '#c62828';
+                    optFormFeedback.textContent = 'אירעה שגיאה בשליחה. אנא נסו שוב או חייגו 04-6060111.';
+                } finally {
+                    optSubmitBtn.disabled = false;
+                    optSubmitBtn.textContent = 'בדיקת היתכנות לחיסכון בפרויקט ←';
+                }
+            });
+        }
+
+        // =====================================================
+        // Accessibility System (מערכת נגישות מתקדמת ותקנית)
+        // =====================================================
+        const a11yToggleBtn = document.getElementById('a11yToggleBtn');
+        const a11yPanel = document.getElementById('a11yPanel');
+        const a11yCloseBtn = document.getElementById('a11yCloseBtn');
+        const a11yModal = document.getElementById('a11yModal');
+        const a11yOpenStatement = document.getElementById('a11yOpenStatement');
+        const a11yCloseStatement = document.getElementById('a11yCloseStatement');
+        const a11yAnnouncer = document.getElementById('a11yAnnouncer');
+        const a11yReadingBar = document.getElementById('a11yReadingBar');
+
+        // State object
+        const a11yState = {
+            fontScale: 1.0,     // 1.0 = 100%, increments by +0.15 (+15%) on each click, decrements by -0.15
+            contrast: 'none',   // none, dark, yellow, light
+            grayscale: false,
+            highlightLinks: false,
+            readableFont: false,
+            textSpacing: false,
+            bigCursor: false,
+            readingGuide: false,
+            stopAnimations: false
+        };
+
+        // Load persisted settings
+        function loadA11ySettings() {
+            try {
+                const saved = localStorage.getItem('shetef_a11y_settings');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    // Migration from older fontSize string to fontScale number
+                    if (parsed.fontScale === undefined && parsed.fontSize) {
+                        if (parsed.fontSize === 'sm') parsed.fontScale = 0.85;
+                        else if (parsed.fontSize === 'lg') parsed.fontScale = 1.30;
+                        else if (parsed.fontSize === 'xl') parsed.fontScale = 1.60;
+                        else parsed.fontScale = 1.0;
+                    }
+                    Object.assign(a11yState, parsed);
+                    applyA11yState(false);
+                }
+            } catch (e) {
+                console.warn('Could not load accessibility settings', e);
+            }
+        }
+
+        // Save settings
+        function saveA11ySettings() {
+            try {
+                localStorage.setItem('shetef_a11y_settings', JSON.stringify(a11yState));
+            } catch (e) {
+                console.warn('Could not save accessibility settings', e);
+            }
+        }
+
+        // Screen reader announcement
+        function announceA11y(text) {
+            if (a11yAnnouncer) {
+                a11yAnnouncer.textContent = text;
+            }
+        }
+
+        // Apply state to DOM
+        function applyA11yState(announce = true) {
+            const body = document.body;
+            const html = document.documentElement;
+
+            // Ensure fontScale has a valid number
+            if (typeof a11yState.fontScale !== 'number' || isNaN(a11yState.fontScale)) {
+                a11yState.fontScale = 1.0;
+            }
+
+            // Real dynamic font scaling across the entire page
+            const fontPercent = Math.round(a11yState.fontScale * 100);
+            html.style.fontSize = `${fontPercent}%`;
+            html.style.setProperty('--a11y-font-scale', `${a11yState.fontScale}`);
+
+            // Update UI percentage indicator badge
+            const fontIndicator = document.getElementById('a11yFontIndicator');
+            if (fontIndicator) {
+                fontIndicator.textContent = `${fontPercent}%`;
+                fontIndicator.style.background = fontPercent !== 100 ? 'var(--accent-peach)' : 'var(--accent-cream)';
+                fontIndicator.style.color = 'var(--bg-dark)';
+            }
+
+            // Highlight reset button if default
+            const resetBtn = document.getElementById('a11yFontReset');
+            if (resetBtn) {
+                resetBtn.classList.toggle('active', a11yState.fontScale === 1.0);
+            }
+
+            // Contrast
+            body.classList.remove('a11y-contrast-dark', 'a11y-contrast-yellow', 'a11y-contrast-light');
+            if (a11yState.contrast === 'dark') body.classList.add('a11y-contrast-dark');
+            if (a11yState.contrast === 'yellow') body.classList.add('a11y-contrast-yellow');
+            if (a11yState.contrast === 'light') body.classList.add('a11y-contrast-light');
+
+            // Grayscale
+            body.classList.toggle('a11y-grayscale', a11yState.grayscale);
+
+            // Highlight links
+            body.classList.toggle('a11y-highlight-links', a11yState.highlightLinks);
+
+            // Readable font
+            body.classList.toggle('a11y-readable-font', a11yState.readableFont);
+
+            // Text spacing
+            body.classList.toggle('a11y-text-spacing', a11yState.textSpacing);
+
+            // Big cursor
+            body.classList.toggle('a11y-big-cursor', a11yState.bigCursor);
+
+            // Stop animations
+            body.classList.toggle('a11y-stop-animations', a11yState.stopAnimations);
+
+            // Reading guide
+            if (a11yReadingBar) {
+                a11yReadingBar.style.display = a11yState.readingGuide ? 'block' : 'none';
+            }
+
+            // Sync Button UI States
+            updateButtonState('a11yContrastDark', a11yState.contrast === 'dark');
+            updateButtonState('a11yContrastYellow', a11yState.contrast === 'yellow');
+            updateButtonState('a11yContrastLight', a11yState.contrast === 'light');
+            updateButtonState('a11yGrayscale', a11yState.grayscale);
+            updateButtonState('a11yHighlightLinks', a11yState.highlightLinks);
+            updateButtonState('a11yReadableFont', a11yState.readableFont);
+            updateButtonState('a11yTextSpacing', a11yState.textSpacing);
+            updateButtonState('a11yBigCursor', a11yState.bigCursor);
+            updateButtonState('a11yReadingGuide', a11yState.readingGuide);
+            updateButtonState('a11yStopAnimations', a11yState.stopAnimations);
+
+            saveA11ySettings();
+        }
+
+        function updateButtonState(btnId, isActive) {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            }
+        }
+
+        // Open/Close Accessibility Panel
+        function openA11yPanel() {
+            if (a11yPanel) {
+                a11yPanel.classList.add('active');
+                a11yPanel.setAttribute('aria-hidden', 'false');
+                a11yToggleBtn.setAttribute('aria-expanded', 'true');
+                announceA11y('סרגל נגישות נפתח');
+                setTimeout(() => {
+                    const firstFocusable = a11yPanel.querySelector('button');
+                    if (firstFocusable) firstFocusable.focus();
+                }, 50);
+            }
+        }
+
+        function closeA11yPanel() {
+            if (a11yPanel) {
+                a11yPanel.classList.remove('active');
+                a11yPanel.setAttribute('aria-hidden', 'true');
+                a11yToggleBtn.setAttribute('aria-expanded', 'false');
+                announceA11y('סרגל נגישות נסגר');
+                a11yToggleBtn.focus();
+            }
+        }
+
+        function toggleA11yPanel() {
+            if (a11yPanel.classList.contains('active')) {
+                closeA11yPanel();
+            } else {
+                openA11yPanel();
+            }
+        }
+
+        // Open/Close Statement Modal
+        function openA11yModal() {
+            if (a11yModal) {
+                a11yModal.classList.add('active');
+                a11yModal.setAttribute('aria-hidden', 'false');
+                announceA11y('הצהרת נגישות נפתחה');
+                setTimeout(() => {
+                    const closeBtn = document.getElementById('a11yCloseStatement');
+                    if (closeBtn) closeBtn.focus();
+                }, 50);
+            }
+        }
+
+        function closeA11yModal() {
+            if (a11yModal) {
+                a11yModal.classList.remove('active');
+                a11yModal.setAttribute('aria-hidden', 'true');
+                announceA11y('הצהרת נגישות נסגרה');
+                if (a11yOpenStatement) a11yOpenStatement.focus();
+            }
+        }
+
+        // Reading guide mouse follow
+        window.addEventListener('mousemove', (e) => {
+            if (a11yState.readingGuide && a11yReadingBar) {
+                a11yReadingBar.style.top = `${e.clientY - 6}px`;
+            }
+        });
+
+        // Event Listeners for Accessibility Buttons
+        if (a11yToggleBtn) {
+            a11yToggleBtn.addEventListener('click', toggleA11yPanel);
+        }
+
+        if (a11yCloseBtn) {
+            a11yCloseBtn.addEventListener('click', closeA11yPanel);
+        }
+
+        if (a11yOpenStatement) {
+            a11yOpenStatement.addEventListener('click', openA11yModal);
+        }
+
+        if (a11yCloseStatement) {
+            a11yCloseStatement.addEventListener('click', closeA11yModal);
+        }
+
+        if (a11yModal) {
+            a11yModal.addEventListener('click', (e) => {
+                if (e.target === a11yModal) {
+                    closeA11yModal();
+                }
+            });
+        }
+
+        // Continuous Incremental Text Sizing (ככל שלוחצים יותר, הטקסט ממשיך לגדול)
+        document.getElementById('a11yFontIncrease')?.addEventListener('click', () => {
+            // Increments font scale by +0.15 (+15%) each click, with ceiling at 3.0 (300%)
+            a11yState.fontScale = Math.min(3.0, Math.round((a11yState.fontScale + 0.15) * 100) / 100);
+            applyA11yState();
+            announceA11y(`גודל טקסט הוגדל ל-${Math.round(a11yState.fontScale * 100)} אחוז`);
+        });
+
+        document.getElementById('a11yFontDecrease')?.addEventListener('click', () => {
+            // Decrements font scale by -0.15 (-15%) each click, down to 0.70 (70%)
+            a11yState.fontScale = Math.max(0.70, Math.round((a11yState.fontScale - 0.15) * 100) / 100);
+            applyA11yState();
+            announceA11y(`גודל טקסט הוקטן ל-${Math.round(a11yState.fontScale * 100)} אחוז`);
+        });
+
+        document.getElementById('a11yFontReset')?.addEventListener('click', () => {
+            a11yState.fontScale = 1.0;
+            applyA11yState();
+            announceA11y('גודל טקסט אופס ל-100% ברירת מחדל');
+        });
+
+        // Contrasts
+        document.getElementById('a11yContrastDark')?.addEventListener('click', () => {
+            a11yState.contrast = a11yState.contrast === 'dark' ? 'none' : 'dark';
+            applyA11yState();
+            announceA11y(a11yState.contrast === 'dark' ? 'ניגודיות כהה הופעלה' : 'ניגודיות כהה כובתה');
+        });
+
+        document.getElementById('a11yContrastYellow')?.addEventListener('click', () => {
+            a11yState.contrast = a11yState.contrast === 'yellow' ? 'none' : 'yellow';
+            applyA11yState();
+            announceA11y(a11yState.contrast === 'yellow' ? 'שחור-צהוב הופעל' : 'שחור-צהוב כובה');
+        });
+
+        document.getElementById('a11yContrastLight')?.addEventListener('click', () => {
+            a11yState.contrast = a11yState.contrast === 'light' ? 'none' : 'light';
+            applyA11yState();
+            announceA11y(a11yState.contrast === 'light' ? 'ניגודיות בהירה הופעלה' : 'ניגודיות בהירה כובתה');
+        });
+
+        document.getElementById('a11yGrayscale')?.addEventListener('click', () => {
+            a11yState.grayscale = !a11yState.grayscale;
+            applyA11yState();
+            announceA11y(a11yState.grayscale ? 'גווני אפור הופעלו' : 'גווני אפור כובו');
+        });
+
+        // Content
+        document.getElementById('a11yHighlightLinks')?.addEventListener('click', () => {
+            a11yState.highlightLinks = !a11yState.highlightLinks;
+            applyA11yState();
+            announceA11y(a11yState.highlightLinks ? 'הדגשת קישורים הופעלה' : 'הדגשת קישורים כובתה');
+        });
+
+        document.getElementById('a11yReadableFont')?.addEventListener('click', () => {
+            a11yState.readableFont = !a11yState.readableFont;
+            applyA11yState();
+            announceA11y(a11yState.readableFont ? 'גופן קריא הופעל' : 'גופן קריא כובה');
+        });
+
+        document.getElementById('a11yTextSpacing')?.addEventListener('click', () => {
+            a11yState.textSpacing = !a11yState.textSpacing;
+            applyA11yState();
+            announceA11y(a11yState.textSpacing ? 'ריווח טקסט הופעל' : 'ריווח טקסט כובה');
+        });
+
+        document.getElementById('a11yBigCursor')?.addEventListener('click', () => {
+            a11yState.bigCursor = !a11yState.bigCursor;
+            applyA11yState();
+            announceA11y(a11yState.bigCursor ? 'סמן מוגדל הופעל' : 'סמן מוגדל כובה');
+        });
+
+        document.getElementById('a11yReadingGuide')?.addEventListener('click', () => {
+            a11yState.readingGuide = !a11yState.readingGuide;
+            applyA11yState();
+            announceA11y(a11yState.readingGuide ? 'סרגל קריאה הופעל' : 'סרגל קריאה כובה');
+        });
+
+        document.getElementById('a11yStopAnimations')?.addEventListener('click', () => {
+            a11yState.stopAnimations = !a11yState.stopAnimations;
+            applyA11yState();
+            announceA11y(a11yState.stopAnimations ? 'עצירת אנימציות הופעלה' : 'עצירת אנימציות כובתה');
+        });
+
+        // Reset All
+        document.getElementById('a11yResetAll')?.addEventListener('click', () => {
+            a11yState.fontScale = 1.0;
+            a11yState.contrast = 'none';
+            a11yState.grayscale = false;
+            a11yState.highlightLinks = false;
+            a11yState.readableFont = false;
+            a11yState.textSpacing = false;
+            a11yState.bigCursor = false;
+            a11yState.readingGuide = false;
+            a11yState.stopAnimations = false;
+            applyA11yState();
+            announceA11y('כל הגדרות הנגישות אופסו לברירת מחדל');
+        });
+
+        // Keyboard Shortcuts (Alt+A to open/close, Escape to close)
+        window.addEventListener('keydown', (e) => {
+            // Alt + A (Toggle Accessibility Panel)
+            if (e.altKey && (e.key === 'a' || e.key === 'A' || e.key === 'ש')) {
+                e.preventDefault();
+                toggleA11yPanel();
+            }
+
+            // Escape key handling
+            if (e.key === 'Escape') {
+                if (optPopup && optPopup.classList.contains('active')) {
+                    closeOptPopup();
+                } else if (a11yModal && a11yModal.classList.contains('active')) {
+                    closeA11yModal();
+                } else if (a11yPanel && a11yPanel.classList.contains('active')) {
+                    closeA11yPanel();
+                }
+            }
+        });
+
+        // Initialize Accessibility settings on load
+        loadA11ySettings();
+
+        // מחוון התקדמות גלילה בראש העמוד (Top Scroll Progress Bar)
+        function updateScrollProgress() {
+            const progressBar = document.getElementById('scroll-progress-bar');
+            if (!progressBar) return;
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+            progressBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollProgress, { passive: true });
+        window.addEventListener('resize', updateScrollProgress, { passive: true });
+        updateScrollProgress();
+    </script>
+</body>
+</html>

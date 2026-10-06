@@ -1,0 +1,8 @@
+{
+  "name": "שטף הנדסת סביבה",
+  "description": "שטף הנדסת סביבה - גג אחד לייעוץ בתחומי בניה ירוקה, קרקעות מזוהמות ועמידה בתקנים הנדסיים לצורך קבלת היתרי בניה.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
