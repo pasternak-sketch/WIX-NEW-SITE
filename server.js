@@ -47,6 +47,8 @@ app.get('/api/contact', (req, res) => {
 });
 
 // Serve static assets and index.html
+app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname));
 
 // Fallback to index.html
