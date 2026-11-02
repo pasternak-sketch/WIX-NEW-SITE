@@ -968,11 +968,77 @@
             gap: 16px;
         }
 
+        .clients-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: 0 auto 10px;
+            direction: rtl;
+        }
+
+        .clients-nav-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1.5px solid #d9e6e1;
+            color: #175345;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            outline: none;
+            flex-shrink: 0;
+        }
+
+        .clients-nav-btn:hover {
+            background: #204c44;
+            color: #ffffff;
+            border-color: #204c44;
+            transform: scale(1.08);
+            box-shadow: 0 4px 14px rgba(32, 76, 68, 0.2);
+        }
+
+        .clients-nav-btn:active {
+            transform: scale(0.94);
+        }
+
+        .clients-drag-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(23, 83, 69, 0.06);
+            border: 1px solid rgba(23, 83, 69, 0.14);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #175345;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .clients-drag-indicator svg {
+            color: var(--accent-peach);
+            flex-shrink: 0;
+        }
+
         .clients-marquee-row {
             position: relative;
             width: 100%;
             overflow: hidden;
             display: flex;
+            touch-action: pan-y; /* Crucial: permits natural vertical page scrolling on mobile while capturing horizontal swipe */
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .clients-marquee-row.is-dragging {
+            cursor: grabbing;
         }
 
         .clients-fade-edge {
@@ -997,17 +1063,8 @@
         .clients-marquee-track {
             display: flex;
             width: max-content;
-            animation: marqueeScroll 46s linear infinite;
             will-change: transform;
-        }
-
-        .clients-marquee-track.track-row-2 {
-            animation-duration: 52s;
-        }
-
-        .clients-marquee-wrapper:hover .clients-marquee-track,
-        .clients-marquee-wrapper:focus-within .clients-marquee-track {
-            animation-play-state: paused;
+            animation: none !important; /* Driven by high-performance requestAnimationFrame for smooth drag and instant auto-resume */
         }
 
         .clients-marquee-group {
@@ -1017,15 +1074,6 @@
             padding-right: 20px;
             flex-shrink: 0;
             direction: rtl; /* Cards inside display Hebrew text in correct RTL order */
-        }
-
-        @keyframes marqueeScroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
         }
 
         .client-logo-card {
@@ -1041,15 +1089,24 @@
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
                         border-color 0.25s ease, 
                         box-shadow 0.25s ease;
-            cursor: pointer;
+            cursor: grab;
             user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
         }
 
-        .client-logo-card:hover {
-            transform: translateY(-3px);
-            border-color: #204c44;
-            box-shadow: 0 10px 24px rgba(32, 76, 68, 0.12);
-            background: #ffffff;
+        .clients-marquee-row.is-dragging .client-logo-card {
+            cursor: grabbing;
+            pointer-events: none; /* Avoid triggering card hover state while actively dragging */
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .client-logo-card:hover {
+                transform: translateY(-3px);
+                border-color: #204c44;
+                box-shadow: 0 10px 24px rgba(32, 76, 68, 0.12);
+                background: #ffffff;
+            }
         }
 
         .client-badge-icon-wrap {
@@ -1778,6 +1835,17 @@
             border: 2px solid #ffffff !important;
             box-shadow: none !important;
         }
+        body.a11y-contrast-dark .clients-nav-btn {
+            background-color: #121212 !important;
+            color: #ffd54f !important;
+            border: 2px solid #ffffff !important;
+            box-shadow: none !important;
+        }
+        body.a11y-contrast-dark .clients-drag-indicator {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            border: 1px solid #ffd54f !important;
+        }
 
         /* Yellow on Black Mode */
         body.a11y-contrast-yellow {
@@ -1872,6 +1940,17 @@
             color: #ffffff !important;
             border: 2px solid #000000 !important;
             box-shadow: none !important;
+        }
+        body.a11y-contrast-light .clients-nav-btn {
+            background: #ffffff !important;
+            color: #000000 !important;
+            border: 2px solid #000000 !important;
+            box-shadow: none !important;
+        }
+        body.a11y-contrast-light .clients-drag-indicator {
+            background: #ffffff !important;
+            color: #000000 !important;
+            border: 2px solid #000000 !important;
         }
 
         /* Grayscale - applied to content containers to prevent breaking position:fixed coordinate frames */
@@ -2269,7 +2348,16 @@
                 <p class="clients-sub">עיריות, גופי תשתית לאומיים, חברות יזמות, קבלני ביצוע ומנהלי פרויקטים מהמובילים בישראל שבחרו בליווי של "שטף"</p>
             </div>
 
-            <div class="clients-marquee-wrapper" tabindex="0" role="region" aria-label="רצועת לוגואים של לקוחות - גלילה אופקית אוטומטית, ניתנת לעצירה בריחוף עכבר">
+            <div class="clients-toolbar">
+                <button type="button" class="clients-nav-btn clients-nav-right" id="clientsNavRight" aria-label="החלק ימינה" title="החלק ימינה לצפייה בחברות נוספות">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <button type="button" class="clients-nav-btn clients-nav-left" id="clientsNavLeft" aria-label="החלק שמאלה" title="החלק שמאלה לצפייה בחברות נוספות">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+            </div>
+
+            <div class="clients-marquee-wrapper" role="region" aria-label="רצועת לוגואים של לקוחות ושותפים - ניתנת להחלקה וגרירה בשליטה מלאה, רצה ברציפות">
                 <div class="clients-fade-edge clients-fade-left" aria-hidden="true"></div>
                 <div class="clients-fade-edge clients-fade-right" aria-hidden="true"></div>
 
@@ -3883,6 +3971,234 @@
         window.addEventListener('scroll', updateScrollProgress, { passive: true });
         window.addEventListener('resize', updateScrollProgress, { passive: true });
         updateScrollProgress();
+
+        // =====================================================
+        // Interactive Clients Marquee: Touch Swipe, Mouse Drag, Smooth Momentum & Auto-Resume
+        // =====================================================
+        (function initClientsMarquee() {
+            const row1 = document.querySelector('.clients-marquee-row:nth-of-type(1)');
+            const row2 = document.querySelector('.clients-marquee-row:nth-of-type(2)');
+            const track1 = document.querySelector('.track-row-1');
+            const track2 = document.querySelector('.track-row-2');
+            if (!track1 || !track2) return;
+
+            const isMouseFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+            const tracks = [
+                {
+                    row: row1,
+                    track: track1,
+                    firstGroup: track1.querySelector('.clients-marquee-group'),
+                    baseSpeed: -0.75, // pixels per 60fps frame
+                    offset: 0,
+                    groupWidth: 0,
+                    velocity: 0,
+                    isDragging: false,
+                    isHovered: false,
+                    pointerId: null,
+                    startX: 0,
+                    startY: 0,
+                    lastX: 0,
+                    lastTime: 0,
+                    dragDistance: 0
+                },
+                {
+                    row: row2,
+                    track: track2,
+                    firstGroup: track2.querySelector('.clients-marquee-group'),
+                    baseSpeed: -0.62, // slightly different speed for visual depth
+                    offset: 0,
+                    groupWidth: 0,
+                    velocity: 0,
+                    isDragging: false,
+                    isHovered: false,
+                    pointerId: null,
+                    startX: 0,
+                    startY: 0,
+                    lastX: 0,
+                    lastTime: 0,
+                    dragDistance: 0
+                }
+            ];
+
+            function measureWidths() {
+                tracks.forEach(t => {
+                    if (t.firstGroup) {
+                        t.groupWidth = t.firstGroup.offsetWidth;
+                    }
+                });
+            }
+
+            measureWidths();
+            window.addEventListener('resize', measureWidths, { passive: true });
+
+            // Setup pointer and touch drag handlers on each row
+            tracks.forEach(t => {
+                const row = t.row;
+                if (!row) return;
+
+                // Mouse hover pause ONLY on real desktop mice (never on touch screens)
+                if (isMouseFine) {
+                    row.addEventListener('pointerenter', (e) => {
+                        if (e.pointerType === 'mouse') {
+                            t.isHovered = true;
+                        }
+                    });
+                    row.addEventListener('pointerleave', (e) => {
+                        if (e.pointerType === 'mouse') {
+                            t.isHovered = false;
+                        }
+                    });
+                }
+
+                row.addEventListener('pointerdown', (e) => {
+                    // Only primary pointer button
+                    if (e.button !== undefined && e.button !== 0) return;
+                    t.pointerId = e.pointerId;
+                    t.startX = e.clientX;
+                    t.startY = e.clientY;
+                    t.lastX = e.clientX;
+                    t.lastTime = performance.now();
+                    t.velocity = 0;
+                    t.dragDistance = 0;
+                    t.isDragging = false;
+                });
+
+                window.addEventListener('pointermove', (e) => {
+                    if (t.pointerId !== e.pointerId) return;
+                    const deltaX = e.clientX - t.lastX;
+                    const totalDx = e.clientX - t.startX;
+                    const totalDy = e.clientY - t.startY;
+                    t.dragDistance = Math.hypot(totalDx, totalDy);
+
+                    if (!t.isDragging) {
+                        // Check if intent is horizontal swipe (allows vertical page scroll on phones)
+                        if (Math.abs(totalDx) > 6 && Math.abs(totalDx) > Math.abs(totalDy)) {
+                            t.isDragging = true;
+                            row.classList.add('is-dragging');
+                            try {
+                                row.setPointerCapture(e.pointerId);
+                            } catch (err) {}
+                        }
+                    }
+
+                    if (t.isDragging) {
+                        if (e.cancelable) e.preventDefault();
+                        t.offset += deltaX;
+
+                        // Seamless continuous wrap in both directions
+                        if (t.groupWidth > 0) {
+                            while (t.offset <= -t.groupWidth) t.offset += t.groupWidth;
+                            while (t.offset > 0) t.offset -= t.groupWidth;
+                        }
+
+                        const now = performance.now();
+                        const dt = Math.max(1, now - t.lastTime);
+                        t.velocity = (deltaX / dt) * 16.66; // normalize velocity
+                        t.lastX = e.clientX;
+                        t.lastTime = now;
+
+                        t.track.style.transform = `translate3d(${t.offset}px, 0, 0)`;
+                    }
+                }, { passive: false });
+
+                function endDrag(e) {
+                    if (t.pointerId === e.pointerId) {
+                        if (t.isDragging) {
+                            t.isDragging = false;
+                            row.classList.remove('is-dragging');
+                            try {
+                                row.releasePointerCapture(e.pointerId);
+                            } catch (err) {}
+                            // Smooth momentum clamp
+                            t.velocity = Math.max(-26, Math.min(26, t.velocity));
+                        }
+                        t.pointerId = null;
+                        // On mobile / touch, ALWAYS clear hover so carousel never stays paused
+                        if (e.pointerType !== 'mouse') {
+                            t.isHovered = false;
+                        }
+                    }
+                }
+
+                window.addEventListener('pointerup', endDrag);
+                window.addEventListener('pointercancel', endDrag);
+
+                // Prevent accidental card click if the user swiped
+                row.addEventListener('click', (e) => {
+                    if (t.dragDistance > 6) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, true);
+            });
+
+            // Quick glide navigation buttons
+            const navRightBtn = document.getElementById('clientsNavRight');
+            const navLeftBtn = document.getElementById('clientsNavLeft');
+
+            if (navRightBtn) {
+                navRightBtn.addEventListener('click', () => {
+                    tracks.forEach(t => {
+                        t.velocity += 15; // Smooth acceleration to the right
+                    });
+                });
+            }
+
+            if (navLeftBtn) {
+                navLeftBtn.addEventListener('click', () => {
+                    tracks.forEach(t => {
+                        t.velocity -= 15; // Smooth acceleration to the left
+                    });
+                });
+            }
+
+            // High performance requestAnimationFrame loop
+            let lastFrameTime = performance.now();
+            function loop(now) {
+                const dt = Math.min(34, now - lastFrameTime);
+                lastFrameTime = now;
+                const timeRatio = dt / 16.666;
+
+                const isStopAnimations = document.body.classList.contains('a11y-stop-animations');
+
+                tracks.forEach(t => {
+                    if (!t.groupWidth && t.firstGroup) {
+                        t.groupWidth = t.firstGroup.offsetWidth;
+                    }
+
+                    if (!t.isDragging) {
+                        // Apply inertia momentum
+                        if (Math.abs(t.velocity) > 0.12) {
+                            t.offset += t.velocity * timeRatio;
+                            t.velocity *= Math.pow(0.92, timeRatio); // smooth decay
+                        } else {
+                            t.velocity = 0;
+                            // Regular auto-scroll when not hovering and animations are enabled
+                            if (!t.isHovered && !isStopAnimations) {
+                                t.offset += t.baseSpeed * timeRatio;
+                            }
+                        }
+
+                        // Seamless continuous wrap in both directions
+                        if (t.groupWidth > 0) {
+                            while (t.offset <= -t.groupWidth) {
+                                t.offset += t.groupWidth;
+                            }
+                            while (t.offset > 0) {
+                                t.offset -= t.groupWidth;
+                            }
+                        }
+
+                        t.track.style.transform = `translate3d(${t.offset}px, 0, 0)`;
+                    }
+                });
+
+                requestAnimationFrame(loop);
+            }
+
+            requestAnimationFrame(loop);
+        })();
     </script>
 </body>
 </html>
