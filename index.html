@@ -886,19 +886,31 @@
             background: linear-gradient(145deg, #ffffff 0%, #f4faf7 100%);
             border: 2px solid var(--accent-peach) !important;
             border-right: 8px solid var(--accent-peach) !important;
+            padding: 30px 28px 32px !important;
             position: relative;
         }
 
         .opt-badge-pill {
-            position: absolute;
-            top: 15px;
-            left: 15px;
+            display: inline-block;
+            align-self: flex-start;
             background: var(--accent-peach);
             color: var(--bg-dark);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 800;
-            padding: 4px 10px;
+            letter-spacing: 0.5px;
+            padding: 4px 12px;
             border-radius: 20px;
+            margin-bottom: 12px;
+            border: 1px solid #d48a43;
+            transition: var(--transition);
+        }
+
+        .opt-service-lead {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--bg-dark);
+            line-height: 1.5;
         }
 
         /* =====================================================
@@ -1365,7 +1377,12 @@
         body.a11y-contrast-dark .opt-hook-title {
             color: #ffd54f !important;
         }
-        body.a11y-contrast-dark .hero p {
+        body.a11y-contrast-dark .hero p,
+        body.a11y-contrast-dark .service-card p,
+        body.a11y-contrast-dark #optServiceCard p,
+        body.a11y-contrast-dark .opt-service-lead,
+        body.a11y-contrast-dark .service-card li,
+        body.a11y-contrast-dark .service-card strong {
             color: #ffffff !important;
         }
         body.a11y-contrast-dark .logo-badge {
@@ -1395,6 +1412,10 @@
             color: #ffff00 !important;
             border-color: #ffff00 !important;
         }
+        body.a11y-contrast-yellow .opt-service-lead,
+        body.a11y-contrast-yellow #optServiceCard p {
+            color: #ffff00 !important;
+        }
         body.a11y-contrast-yellow input,
         body.a11y-contrast-yellow textarea,
         body.a11y-contrast-yellow button {
@@ -1420,6 +1441,9 @@
         body.a11y-contrast-light h2,
         body.a11y-contrast-light h3,
         body.a11y-contrast-light .hero p,
+        body.a11y-contrast-light .service-card p,
+        body.a11y-contrast-light #optServiceCard p,
+        body.a11y-contrast-light .opt-service-lead,
         body.a11y-contrast-light .brand-text {
             color: #000000 !important;
         }
@@ -1714,9 +1738,9 @@
                     <li><a href="#about">אודות</a></li>
                     <li><a href="#contact">צור קשר</a></li>
                     <li>
-                        <button type="button" class="nav-opt-btn" id="navOptBtn" onclick="toggleOptPopup()" aria-haspopup="dialog" aria-expanded="false" title="בדיקת חיסכון ואופטימיזציה ליזמים">
+                        <button type="button" class="nav-opt-btn" id="navOptBtn" onclick="toggleOptPopup()" aria-haspopup="dialog" aria-expanded="false" title="בדיקת חיסכון ואופטימיזציה ליזמים ולקבלני ביצוע">
                             <span class="badge-dot-nav"></span>
-                            <span>בדיקת חיסכון ליזמים</span>
+                            <span>בדיקת חיסכון ליזמים ולקבלני ביצוע</span>
                         </button>
                     </li>
                 </ul>
@@ -1767,6 +1791,7 @@
                         <li>אסדרת קרקעות מזוהמות</li>
                         <li>טיפול בגזי קרקע</li>
                         <li>ניקוז, טיפול והגנה למי תהום</li>
+                        <li>הידרולוגיה וטיפול בנגר</li>
                     </ul>
                 </div>
                 <!-- Group 2 -->
@@ -1777,20 +1802,19 @@
                         <li>ניהול תקן בניה ירוקה</li>
                         <li>ייעוץ תרמי</li>
                         <li>מידול אנרגטי</li>
-                        <li>הידרולוגיה וטיפול בנגר</li>
-                        <li>אקוסטיקה הנדסית</li>
+                        <li>ייעוץ אקוסטיקה</li>
                         <li>איטום ומיגון מגזי קרקע</li>
                         <li>תכנון הגנות סביבתיות למפעלים</li>
                     </ul>
                 </div>
-                <!-- New Feature for Developers -->
+                <!-- New Feature for Developers & Execution Contractors -->
                 <div class="service-card opt-service-featured" id="optServiceCard">
-                    <div class="opt-badge-pill">שירות בלעדי ליזמים</div>
-                    <h3 style="color: #b85d18; margin-top: 6px;">אופטימיזציה ובקרה ירוקה</h3>
-                    <p style="font-size: 0.95rem; margin-bottom: 15px; font-weight: 600; color: var(--bg-dark);">יש לכם כבר יועץ? חוסכים לכם מאות אלפי ₪ עוד לפני הזמנת החומרים!</p>
+                    <span class="service-category opt-badge-pill">שירות בלעדי ליזמים ולקבלני ביצוע</span>
+                    <h3 style="color: #b85d18;">אופטימיזציה ובקרה ירוקה</h3>
+                    <p class="opt-service-lead">יש לכם כבר יועץ? חוסכים לכם מאות אלפי ₪ עוד לפני הזמנת החומרים!</p>
                     <ul>
-                        <li><strong>איתור בידודים כפולים</strong> וכשלים מעבר לדרישות התקן</li>
-                        <li><strong>חיסכון כספי אדיר ברכש</strong> לפני ביצוע ההזמנות</li>
+                        <li><strong>איתור תכנון יתר (Over-design)</strong> וכשלים מעבר לדרישות התקן</li>
+                        <li><strong>חיסכון משמעותי ברכש</strong> לפני ביצוע ההזמנות</li>
                         <li><strong>בקרה ירוקה מקיפה (QA)</strong> לעמידה מלאה בתקנים</li>
                         <li><strong>ראש שקט וליווי</strong> מול ועדות התכנון והיתרי הבניה</li>
                     </ul>
@@ -1819,15 +1843,11 @@
                     <div class="contact-details-list">
                         <div class="contact-item">
                             <span class="contact-label">כתובת:</span>
-                            <span class="contact-val">ח'ורי 2, מגדל הנביאים, חיפה</span>
+                            <span class="contact-val" style="color: var(--accent-cream);">ח'ורי 2, מגדל הנביאים, חיפה</span>
                         </div>
                         <div class="contact-item">
                             <span class="contact-label">טלפון:</span>
                             <a href="tel:046060111" class="contact-val contact-link">04-6060111</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-label">פקס:</span>
-                            <a href="tel:0774448345" class="contact-val contact-link" style="color: var(--accent-cream) !important; text-decoration: none;">077-4448345</a>
                         </div>
                         <div class="contact-item">
                             <span class="contact-label">דוא"ל:</span>
@@ -1880,7 +1900,7 @@
     <div class="opt-popup-overlay" id="optPopup" role="dialog" aria-labelledby="optPopupTitle" aria-modal="true">
         <div class="opt-popup-header">
             <div>
-                <span class="opt-header-tag">בלעדי ליזמים וקבלנים</span>
+                <span class="opt-header-tag">שירות בלעדי ליזמים ולקבלני ביצוע</span>
                 <h3 class="opt-popup-title" id="optPopupTitle">אופטימיזציה ובקרה ירוקה</h3>
             </div>
             <div class="opt-popup-actions">
@@ -1900,7 +1920,7 @@
             <ul class="opt-benefits-list">
                 <li class="opt-benefit-item">
                     <span class="opt-benefit-bullet" aria-hidden="true">✓</span>
-                    <div><strong>חיסכון כספי אדיר ברכש:</strong> איתור בידודים כפולים וחומרים מיותרים שתוכננו שלא לצורך התקן.</div>
+                    <div><strong>חיסכון משמעותי ברכש:</strong> איתור תכנון יתר (Over-design), בידודים כפולים וחומרים מיותרים שתוכננו שלא לצורך התקן.</div>
                 </li>
                 <li class="opt-benefit-item">
                     <span class="opt-benefit-bullet" aria-hidden="true">✓</span>
@@ -1912,7 +1932,7 @@
                 </li>
                 <li class="opt-benefit-item">
                     <span class="opt-benefit-bullet" aria-hidden="true">✓</span>
-                    <div><strong>מוכח בהצלחה:</strong> שירות מבוקש שכבר מיושם בהצלחה אצל גדולי היזמים בישראל ופתוח כעת לפרויקטים חדשים.</div>
+                    <div><strong>מוכח בהצלחה:</strong> שירות מבוקש שכבר מיושם בהצלחה אצל גדולי היזמים וקבלני הביצוע בישראל ופתוח כעת לפרויקטים חדשים.</div>
                 </li>
             </ul>
 
@@ -1921,7 +1941,7 @@
                 <form id="optPopupForm">
                     <div class="opt-input-row">
                         <div class="opt-input-group">
-                            <label for="optName">שם היזם / איש קשר *</label>
+                            <label for="optName">שם היזם / קבלן ביצוע / איש קשר *</label>
                             <input type="text" id="optName" required placeholder="ישראל ישראלי">
                         </div>
                         <div class="opt-input-group">
