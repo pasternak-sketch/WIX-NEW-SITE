@@ -914,6 +914,325 @@
         }
 
         /* =====================================================
+           Clients & Partners Marquee Section (בין לקוחותינו)
+           ===================================================== */
+        .clients-section {
+            background: #f4f8f6;
+            padding: 70px 20px 60px;
+            position: relative;
+            border-top: 1px solid #dce8e3;
+            border-bottom: 1px solid #dce8e3;
+            overflow: hidden;
+        }
+
+        .clients-header {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 35px;
+        }
+
+        .clients-eyebrow {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-peach);
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .clients-title {
+            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            font-weight: 800;
+            color: #175345;
+            margin-bottom: 12px;
+            text-wrap: balance;
+        }
+
+        .clients-sub {
+            font-size: 1.02rem;
+            color: #4f6861;
+            margin: 0 auto;
+            max-width: 660px;
+            line-height: 1.6;
+        }
+
+        .clients-marquee-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 12px 0 16px;
+            direction: ltr; /* Keeps coordinates completely uniform and glitch-free */
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .clients-marquee-row {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .clients-fade-edge {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 90px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .clients-fade-left {
+            left: 0;
+            background: linear-gradient(to right, #f4f8f6 0%, rgba(244, 248, 246, 0) 100%);
+        }
+
+        .clients-fade-right {
+            right: 0;
+            background: linear-gradient(to left, #f4f8f6 0%, rgba(244, 248, 246, 0) 100%);
+        }
+
+        .clients-marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 46s linear infinite;
+            will-change: transform;
+        }
+
+        .clients-marquee-track.track-row-2 {
+            animation-duration: 52s;
+        }
+
+        .clients-marquee-wrapper:hover .clients-marquee-track,
+        .clients-marquee-wrapper:focus-within .clients-marquee-track {
+            animation-play-state: paused;
+        }
+
+        .clients-marquee-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-right: 20px;
+            flex-shrink: 0;
+            direction: rtl; /* Cards inside display Hebrew text in correct RTL order */
+        }
+
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .client-logo-card {
+            background: #ffffff;
+            border: 1.5px solid #d9e6e1;
+            border-radius: 14px;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 220px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.25s ease, 
+                        box-shadow 0.25s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .client-logo-card:hover {
+            transform: translateY(-3px);
+            border-color: #204c44;
+            box-shadow: 0 10px 24px rgba(32, 76, 68, 0.12);
+            background: #ffffff;
+        }
+
+        .client-badge-icon-wrap {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #ebf5f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #175345;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .client-logo-card:hover .client-badge-icon-wrap {
+            background: #204c44;
+            color: #ffffff;
+        }
+
+        .client-badge-content {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .client-badge-name {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #175345;
+            line-height: 1.3;
+        }
+
+        .client-badge-type {
+            font-size: 0.77rem;
+            color: #637d76;
+            font-weight: 500;
+        }
+
+        .client-logo-img {
+            max-height: 44px;
+            max-width: 140px;
+            object-fit: contain;
+            display: block;
+            filter: grayscale(25%);
+            transition: var(--transition);
+        }
+
+        .client-logo-card:hover .client-logo-img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+
+        .clients-invite-bar {
+            max-width: 960px;
+            margin: 36px auto 10px;
+            background: linear-gradient(135deg, #175345 0%, #204c44 100%);
+            border-radius: 18px;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            color: #ffffff;
+            box-shadow: 0 12px 30px rgba(23, 83, 69, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            z-index: 3;
+        }
+
+        .clients-invite-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: right;
+        }
+
+        .clients-invite-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-peach);
+            letter-spacing: 0.5px;
+        }
+
+        .clients-invite-text {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .clients-invite-sub {
+            font-size: 0.95rem;
+            color: #d1e5df;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .clients-invite-btn {
+            background-color: var(--accent-peach);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.98rem;
+            padding: 13px 24px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(226, 135, 67, 0.35);
+            flex-shrink: 0;
+        }
+
+        .clients-invite-btn:hover {
+            background-color: #d37330;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(226, 135, 67, 0.45);
+            color: #ffffff;
+        }
+
+        .clients-instruction-hint {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 0.84rem;
+            color: #6c857f;
+        }
+
+        .clients-instruction-hint code {
+            background: #e4eee9;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.83rem;
+            color: #175345;
+        }
+
+        @media (max-width: 768px) {
+            .clients-section {
+                padding: 50px 15px 40px;
+            }
+            .clients-header {
+                margin-bottom: 25px;
+            }
+            .client-logo-card {
+                padding: 12px 18px;
+                min-width: 195px;
+                gap: 12px;
+            }
+            .client-badge-name {
+                font-size: 0.92rem;
+            }
+            .client-badge-type {
+                font-size: 0.73rem;
+            }
+            .clients-fade-edge {
+                width: 45px;
+            }
+            .clients-invite-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px 22px;
+                gap: 18px;
+            }
+            .clients-invite-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .clients-marquee-track {
+                animation: none !important;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+            }
+        }
+
+        /* =====================================================
            Accessibility (נגישות) Components & Modes - WCAG 2.1 AA
            ===================================================== */
 
@@ -1401,6 +1720,64 @@
             color: #fff !important;
             border: 2px solid #fff !important;
         }
+        body.a11y-contrast-dark .clients-section {
+            background-color: #000000 !important;
+            border-top: 2px solid #ffffff !important;
+            border-bottom: 2px solid #ffffff !important;
+        }
+        body.a11y-contrast-dark .clients-title,
+        body.a11y-contrast-dark .clients-eyebrow {
+            color: #ffd54f !important;
+        }
+        body.a11y-contrast-dark .clients-sub,
+        body.a11y-contrast-dark .clients-instruction-hint {
+            color: #ffffff !important;
+        }
+        body.a11y-contrast-dark .clients-fade-left,
+        body.a11y-contrast-dark .clients-fade-right {
+            display: none !important;
+        }
+        body.a11y-contrast-dark .client-logo-card {
+            background-color: #121212 !important;
+            border: 2px solid #ffffff !important;
+            box-shadow: none !important;
+        }
+        body.a11y-contrast-dark .client-badge-icon-wrap {
+            background-color: #222222 !important;
+            color: #ffd54f !important;
+            border: 1px solid #ffffff !important;
+        }
+        body.a11y-contrast-dark .client-badge-name {
+            color: #ffffff !important;
+        }
+        body.a11y-contrast-dark .client-badge-type {
+            color: #ffd54f !important;
+        }
+        body.a11y-contrast-dark .clients-instruction-hint code {
+            background-color: #222222 !important;
+            color: #ffd54f !important;
+            border: 1px solid #ffffff !important;
+        }
+        body.a11y-contrast-dark .clients-invite-bar {
+            background: #121212 !important;
+            border: 2px solid #ffffff !important;
+            box-shadow: none !important;
+        }
+        body.a11y-contrast-dark .clients-invite-badge {
+            color: #ffd54f !important;
+        }
+        body.a11y-contrast-dark .clients-invite-text {
+            color: #ffffff !important;
+        }
+        body.a11y-contrast-dark .clients-invite-sub {
+            color: #cccccc !important;
+        }
+        body.a11y-contrast-dark .clients-invite-btn {
+            background-color: #ffd54f !important;
+            color: #000000 !important;
+            border: 2px solid #ffffff !important;
+            box-shadow: none !important;
+        }
 
         /* Yellow on Black Mode */
         body.a11y-contrast-yellow {
@@ -1414,6 +1791,31 @@
         }
         body.a11y-contrast-yellow .opt-service-lead,
         body.a11y-contrast-yellow #optServiceCard p {
+            color: #ffff00 !important;
+        }
+        body.a11y-contrast-yellow .clients-section {
+            background-color: #000000 !important;
+            border-color: #ffff00 !important;
+        }
+        body.a11y-contrast-yellow .clients-fade-left,
+        body.a11y-contrast-yellow .clients-fade-right {
+            display: none !important;
+        }
+        body.a11y-contrast-yellow .client-logo-card {
+            background-color: #000000 !important;
+            border: 2px solid #ffff00 !important;
+        }
+        body.a11y-contrast-yellow .client-badge-icon-wrap {
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+            border: 1px solid #ffff00 !important;
+        }
+        body.a11y-contrast-yellow .client-badge-name,
+        body.a11y-contrast-yellow .client-badge-type,
+        body.a11y-contrast-yellow .clients-title,
+        body.a11y-contrast-yellow .clients-sub,
+        body.a11y-contrast-yellow .clients-eyebrow,
+        body.a11y-contrast-yellow .clients-instruction-hint {
             color: #ffff00 !important;
         }
         body.a11y-contrast-yellow input,
@@ -1431,7 +1833,8 @@
         body.a11y-contrast-light footer,
         body.a11y-contrast-light .hero,
         body.a11y-contrast-light .service-card,
-        body.a11y-contrast-light .contact-grid {
+        body.a11y-contrast-light .contact-grid,
+        body.a11y-contrast-light .clients-section {
             background-color: #f5f5f5 !important;
             background-image: none !important;
             color: #000000 !important;
@@ -1444,8 +1847,31 @@
         body.a11y-contrast-light .service-card p,
         body.a11y-contrast-light #optServiceCard p,
         body.a11y-contrast-light .opt-service-lead,
-        body.a11y-contrast-light .brand-text {
+        body.a11y-contrast-light .brand-text,
+        body.a11y-contrast-light .clients-title,
+        body.a11y-contrast-light .client-badge-name {
             color: #000000 !important;
+        }
+        body.a11y-contrast-light .client-logo-card {
+            background-color: #ffffff !important;
+            border: 2px solid #000000 !important;
+        }
+        body.a11y-contrast-light .clients-invite-bar {
+            background: #ffffff !important;
+            border: 2px solid #000000 !important;
+            box-shadow: none !important;
+            color: #000000 !important;
+        }
+        body.a11y-contrast-light .clients-invite-badge,
+        body.a11y-contrast-light .clients-invite-text,
+        body.a11y-contrast-light .clients-invite-sub {
+            color: #000000 !important;
+        }
+        body.a11y-contrast-light .clients-invite-btn {
+            background: #000000 !important;
+            color: #ffffff !important;
+            border: 2px solid #000000 !important;
+            box-shadow: none !important;
         }
 
         /* Grayscale - applied to content containers to prevent breaking position:fixed coordinate frames */
@@ -1736,6 +2162,7 @@
                     <li><a href="#home">בית</a></li>
                     <li><a href="#services">שירותים</a></li>
                     <li><a href="#about">אודות</a></li>
+                    <li><a href="#clients">לקוחות</a></li>
                     <li><a href="#contact">צור קשר</a></li>
                     <li>
                         <button type="button" class="nav-opt-btn" id="navOptBtn" onclick="toggleOptPopup()" aria-haspopup="dialog" aria-expanded="false" title="בדיקת חיסכון ואופטימיזציה ליזמים ולקבלני ביצוע">
@@ -1831,6 +2258,823 @@
                         <li>ליווי צמוד עד לקבלת היתרי בניה</li>
                     </ul>
                 </div>
+            </div>
+        </section>
+
+        <!-- Clients & Partners Marquee Section (בין לקוחותינו) -->
+        <section class="clients-section" id="clients" aria-labelledby="clientsTitle">
+            <div class="clients-header">
+                <span class="clients-eyebrow">אמון ושותפות הנדסית</span>
+                <h2 id="clientsTitle" class="clients-title">בין לקוחותינו ושותפינו לדרך</h2>
+                <p class="clients-sub">עיריות, גופי תשתית לאומיים, חברות יזמות, קבלני ביצוע ומנהלי פרויקטים מהמובילים בישראל שבחרו בליווי של "שטף"</p>
+            </div>
+
+            <div class="clients-marquee-wrapper" tabindex="0" role="region" aria-label="רצועת לוגואים של לקוחות - גלילה אופקית אוטומטית, ניתנת לעצירה בריחוף עכבר">
+                <div class="clients-fade-edge clients-fade-left" aria-hidden="true"></div>
+                <div class="clients-fade-edge clients-fade-right" aria-hidden="true"></div>
+
+                <!-- Row 1 of Clients -->
+                <div class="clients-marquee-row">
+                    <div class="clients-marquee-track track-row-1">
+                        <!-- Row 1 - Group 1 (Main) -->
+                        <div class="clients-marquee-group" aria-hidden="false">
+                            <div class="client-logo-card" title="עיריית תל אביב-יפו">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M4 18h16"/><path d="M6 18V10"/><path d="M10 18V10"/><path d="M14 18V10"/><path d="M18 18V10"/><polygon points="12 3 2 9 22 9 12 3"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית תל אביב-יפו</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="עיריית רמת גן">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V9l7-6 7 6v12"/><path d="M9 21v-7h6v7"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית רמת גן</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="עיריית גבעתיים">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 20h20"/><path d="M6 20V12l5-4 5 4v8"/><path d="M14 8l3-3 4 4v11"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית גבעתיים</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="עיריית חולון">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V10h14v11"/><path d="M12 3v7"/><path d="M9 5h6"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית חולון</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="עיריית נתניה">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><rect x="4" y="8" width="7" height="13" rx="1"/><rect x="13" y="12" width="7" height="9" rx="1"/><circle cx="16" cy="6" r="2"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית נתניה</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="עיריית כפר סבא">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V8l6-4 6 4v13"/><path d="M10 13a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית כפר סבא</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="חברת מקורות">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">חברת מקורות</span>
+                                    <span class="client-badge-type">תשתיות מים לאומיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="תאגיד המים רמת גן">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 12h5l3-6 4 12 3-6h5"/><circle cx="12" cy="12" r="9"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">תאגיד המים רמת גן</span>
+                                    <span class="client-badge-type">תשתיות מים וביוב</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="שפיר">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 22L8 2h8l4 20"/><line x1="12" y1="6" x2="12" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">שפיר</span>
+                                    <span class="client-badge-type">תשתיות, הנדסה ותעשייה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="אפריקה ישראל">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><line x1="9" y1="9" x2="9" y2="9.01"/><line x1="9" y1="13" x2="9" y2="13.01"/><line x1="9" y1="17" x2="9" y2="17.01"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">אפריקה ישראל</span>
+                                    <span class="client-badge-type">ייזום ובנייה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="צים (ZIM)">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 20a4 4 0 0 0 4-2 4 4 0 0 1 4 0 4 4 0 0 0 4 2 4 4 0 0 0 4-2 4 4 0 0 1 4 0"/><path d="M4 18l2-8h12l2 8"/><path d="M9 10V6h6v4"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">צים (ZIM)</span>
+                                    <span class="client-badge-type">ספנות ותשתיות ימיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="הכשרת היישוב">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22.01"/><line x1="15" y1="22" x2="15" y2="22.01"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="8" y1="11" x2="8.01" y2="11"/><line x1="16" y1="11" x2="16.01" y2="11"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">הכשרת היישוב</span>
+                                    <span class="client-badge-type">נדל״ן מניב ומגורים</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="קבוצת שיכון ובינוי">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">קבוצת שיכון ובינוי</span>
+                                    <span class="client-badge-type">בנייה ירוקה ותשתיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="שובל מגורים">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V9l7-6 7 6v12"/><path d="M9 13h6"/><path d="M9 17h6"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">שובל מגורים</span>
+                                    <span class="client-badge-type">ייזום ובנייה למגורים</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="קרדן">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">קרדן</span>
+                                    <span class="client-badge-type">ייזום ובנייה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="אוויס (Avis)">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="1" y="4" width="22" height="16" rx="2"/><path d="M5 12h14"/><path d="M8 8v8"/><path d="M16 8v8"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">אוויס (Avis)</span>
+                                    <span class="client-badge-type">רכב ותשתיות תחבורה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="קרן נתניה">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">קרן נתניה</span>
+                                    <span class="client-badge-type">פיתוח עירוני ומוסדות</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 1 - Group 2 (Clone for infinite seamless loop) -->
+                        <div class="clients-marquee-group" aria-hidden="true">
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M4 18h16"/><path d="M6 18V10"/><path d="M10 18V10"/><path d="M14 18V10"/><path d="M18 18V10"/><polygon points="12 3 2 9 22 9 12 3"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית תל אביב-יפו</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V9l7-6 7 6v12"/><path d="M9 21v-7h6v7"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית רמת גן</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 20h20"/><path d="M6 20V12l5-4 5 4v8"/><path d="M14 8l3-3 4 4v11"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית גבעתיים</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V10h14v11"/><path d="M12 3v7"/><path d="M9 5h6"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית חולון</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><rect x="4" y="8" width="7" height="13" rx="1"/><rect x="13" y="12" width="7" height="9" rx="1"/><circle cx="16" cy="6" r="2"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית נתניה</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V8l6-4 6 4v13"/><path d="M10 13a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">עיריית כפר סבא</span>
+                                    <span class="client-badge-type">שלטון מקומי ורישוי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">חברת מקורות</span>
+                                    <span class="client-badge-type">תשתיות מים לאומיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 12h5l3-6 4 12 3-6h5"/><circle cx="12" cy="12" r="9"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">תאגיד המים רמת גן</span>
+                                    <span class="client-badge-type">תשתיות מים וביוב</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 22L8 2h8l4 20"/><line x1="12" y1="6" x2="12" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">שפיר</span>
+                                    <span class="client-badge-type">תשתיות, הנדסה ותעשייה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><line x1="9" y1="9" x2="9" y2="9.01"/><line x1="9" y1="13" x2="9" y2="13.01"/><line x1="9" y1="17" x2="9" y2="17.01"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">אפריקה ישראל</span>
+                                    <span class="client-badge-type">ייזום ובנייה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 20a4 4 0 0 0 4-2 4 4 0 0 1 4 0 4 4 0 0 0 4 2 4 4 0 0 0 4-2 4 4 0 0 1 4 0"/><path d="M4 18l2-8h12l2 8"/><path d="M9 10V6h6v4"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">צים (ZIM)</span>
+                                    <span class="client-badge-type">ספנות ותשתיות ימיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22.01"/><line x1="15" y1="22" x2="15" y2="22.01"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="8" y1="11" x2="8.01" y2="11"/><line x1="16" y1="11" x2="16.01" y2="11"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">הכשרת היישוב</span>
+                                    <span class="client-badge-type">נדל״ן מניב ומגורים</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">קבוצת שיכון ובינוי</span>
+                                    <span class="client-badge-type">בנייה ירוקה ותשתיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V9l7-6 7 6v12"/><path d="M9 13h6"/><path d="M9 17h6"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">שובל מגורים</span>
+                                    <span class="client-badge-type">ייזום ובנייה למגורים</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">קרדן</span>
+                                    <span class="client-badge-type">ייזום ובנייה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="1" y="4" width="22" height="16" rx="2"/><path d="M5 12h14"/><path d="M8 8v8"/><path d="M16 8v8"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">אוויס (Avis)</span>
+                                    <span class="client-badge-type">רכב ותשתיות תחבורה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">קרן נתניה</span>
+                                    <span class="client-badge-type">פיתוח עירוני ומוסדות</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2 of Clients -->
+                <div class="clients-marquee-row">
+                    <div class="clients-marquee-track track-row-2">
+                        <!-- Row 2 - Group 1 (Main) -->
+                        <div class="clients-marquee-group" aria-hidden="false">
+                            <div class="client-logo-card" title="אחוזת החוף">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">אחוזת החוף</span>
+                                    <span class="client-badge-type">תשתיות תחבורה וחניונים</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="צמנטכל סולל בונה">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 22h20"/><path d="M6 22V2h3"/><path d="M6 5h14l-3 4H6"/><circle cx="17" cy="15" r="1"/><path d="M17 9v5"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">צמנטכל סולל בונה</span>
+                                    <span class="client-badge-type">ביצוע והנדסה אזרחית</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="נחשון ביצוע">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 22h20"/><path d="M7 2v20"/><path d="M17 2v20"/><path d="M2 7h20"/><path d="M2 12h20"/><path d="M2 17h20"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">נחשון ביצוע</span>
+                                    <span class="client-badge-type">ביצוע והנדסה אזרחית</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="G גרופ">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"/><text x="8" y="16" font-size="11" font-weight="800" fill="currentColor">G</text>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">G גרופ</span>
+                                    <span class="client-badge-type">ייזום וניהול פרויקטים</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="רד בינת נכסים">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">רד בינת נכסים</span>
+                                    <span class="client-badge-type">פארקי הייטק ונדל״ן מניב</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="רכבת ישראל">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><path d="M7 19l-3 2"/><path d="M17 19l3 2"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">רכבת ישראל</span>
+                                    <span class="client-badge-type">תשתיות תחבורה לאומיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="וקסמן גוברין">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="5" r="2"/><path d="M12 7l6 14"/><path d="M12 7L6 21"/><path d="M9 15h6"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">וקסמן גוברין</span>
+                                    <span class="client-badge-type">ניהול פרויקטים והנדסה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="דנה הנדסה">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">דנה הנדסה</span>
+                                    <span class="client-badge-type">ניהול ופיקוח הנדסי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="קרגו אמרפורד">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">קרגו אמרפורד</span>
+                                    <span class="client-badge-type">שילוח בינלאומי ולוגיסטיקה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="דניה סיבוס">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="15" y2="15"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">דניה סיבוס</span>
+                                    <span class="client-badge-type">קבלנות בנייה ותשתיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="סיבוס רימון">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">סיבוס רימון</span>
+                                    <span class="client-badge-type">תשתיות והנדסה אזרחית</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="החברה המרכזית למשקאות טרה (קוקה קולה)">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 20h20"/><path d="M4 20V8l6 4V4l6 4v12"/><circle cx="17" cy="8" r="2"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">החברה המרכזית למשקאות טרה (קוקה קולה)</span>
+                                    <span class="client-badge-type">תעשייה, ייצור ולוגיסטיקה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="מכללת רמת גן">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">מכללת רמת גן</span>
+                                    <span class="client-badge-type">אקדמיה ומוסדות חינוך</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="חוף שמן נכסים">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M3 10h18"/><path d="M5 6l7-3 7 3"/><path d="M4 10v11"/><path d="M20 10v11"/><path d="M10 14h4v7h-4z"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">חוף שמן נכסים</span>
+                                    <span class="client-badge-type">מתחמי תעשייה ומסחר</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card" title="אדריכלים וחברות ניהול פרויקטים מהמובילים בישראל">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="3 20 21 20 21 4 3 20"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="15" y1="11" x2="15" y2="15"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">אדריכלים וחברות ניהול מובילים</span>
+                                    <span class="client-badge-type">תכנון ופיקוח הנדסי</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2 - Group 2 (Clone for infinite seamless loop) -->
+                        <div class="clients-marquee-group" aria-hidden="true">
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">אחוזת החוף</span>
+                                    <span class="client-badge-type">תשתיות תחבורה וחניונים</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 22h20"/><path d="M6 22V2h3"/><path d="M6 5h14l-3 4H6"/><circle cx="17" cy="15" r="1"/><path d="M17 9v5"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">צמנטכל סולל בונה</span>
+                                    <span class="client-badge-type">ביצוע והנדסה אזרחית</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 22h20"/><path d="M7 2v20"/><path d="M17 2v20"/><path d="M2 7h20"/><path d="M2 12h20"/><path d="M2 17h20"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">נחשון ביצוע</span>
+                                    <span class="client-badge-type">ביצוע והנדסה אזרחית</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"/><text x="8" y="16" font-size="11" font-weight="800" fill="currentColor">G</text>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">G גרופ</span>
+                                    <span class="client-badge-type">ייזום וניהול פרויקטים</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">רד בינת נכסים</span>
+                                    <span class="client-badge-type">פארקי הייטק ונדל״ן מניב</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><path d="M7 19l-3 2"/><path d="M17 19l3 2"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">רכבת ישראל</span>
+                                    <span class="client-badge-type">תשתיות תחבורה לאומיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="5" r="2"/><path d="M12 7l6 14"/><path d="M12 7L6 21"/><path d="M9 15h6"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">וקסמן גוברין</span>
+                                    <span class="client-badge-type">ניהול פרויקטים והנדסה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">דנה הנדסה</span>
+                                    <span class="client-badge-type">ניהול ופיקוח הנדסי</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">קרגו אמרפורד</span>
+                                    <span class="client-badge-type">שילוח בינלאומי ולוגיסטיקה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="15" y2="15"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">דניה סיבוס</span>
+                                    <span class="client-badge-type">קבלנות בנייה ותשתיות</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">סיבוס רימון</span>
+                                    <span class="client-badge-type">תשתיות והנדסה אזרחית</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 20h20"/><path d="M4 20V8l6 4V4l6 4v12"/><circle cx="17" cy="8" r="2"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">החברה המרכזית למשקאות טרה (קוקה קולה)</span>
+                                    <span class="client-badge-type">תעשייה, ייצור ולוגיסטיקה</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">מכללת רמת גן</span>
+                                    <span class="client-badge-type">אקדמיה ומוסדות חינוך</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 21h18"/><path d="M3 10h18"/><path d="M5 6l7-3 7 3"/><path d="M4 10v11"/><path d="M20 10v11"/><path d="M10 14h4v7h-4z"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">חוף שמן נכסים</span>
+                                    <span class="client-badge-type">מתחמי תעשייה ומסחר</span>
+                                </div>
+                            </div>
+
+                            <div class="client-logo-card">
+                                <div class="client-badge-icon-wrap" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="3 20 21 20 21 4 3 20"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="15" y1="11" x2="15" y2="15"/>
+                                    </svg>
+                                </div>
+                                <div class="client-badge-content">
+                                    <span class="client-badge-name">אדריכלים וחברות ניהול מובילים</span>
+                                    <span class="client-badge-type">תכנון ופיקוח הנדסי</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Closing Callout Bar: נשמח גם לעמוד לשירותכם -->
+            <div class="clients-invite-bar">
+                <div class="clients-invite-content">
+                    <span class="clients-invite-badge">הצטרפו לנבחרת הלקוחות</span>
+                    <h3 class="clients-invite-text">נשמח גם לעמוד לשירותכם</h3>
+                    <p class="clients-invite-sub">ייעוץ סביבתי, הידרולוגיה, תקן בניה ירוקה ואופטימיזציה הנדסית לחיסכון משמעותי בעלויות הפרויקט</p>
+                </div>
+                <a href="#contact" class="clients-invite-btn">
+                    <span>פנו אלינו לתיאום פגישה</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                </a>
             </div>
         </section>
 
