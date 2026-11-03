@@ -1065,6 +1065,7 @@
             width: max-content;
             will-change: transform;
             animation: none !important; /* Driven by high-performance requestAnimationFrame for smooth drag and instant auto-resume */
+            touch-action: pan-y;
         }
 
         .clients-marquee-group {
@@ -1074,6 +1075,7 @@
             padding-right: 20px;
             flex-shrink: 0;
             direction: rtl; /* Cards inside display Hebrew text in correct RTL order */
+            touch-action: pan-y;
         }
 
         .client-logo-card {
@@ -1093,6 +1095,7 @@
             user-select: none;
             -webkit-user-select: none;
             -webkit-user-drag: none;
+            touch-action: pan-y;
         }
 
         .clients-marquee-row.is-dragging .client-logo-card {
@@ -3976,50 +3979,42 @@
         // Interactive Clients Marquee: Touch Swipe, Mouse Drag, Smooth Momentum & Auto-Resume
         // =====================================================
         (function initClientsMarquee() {
-            const row1 = document.querySelector('.clients-marquee-row:nth-of-type(1)');
-            const row2 = document.querySelector('.clients-marquee-row:nth-of-type(2)');
-            const track1 = document.querySelector('.track-row-1');
-            const track2 = document.querySelector('.track-row-2');
-            if (!track1 || !track2) return;
+            // Select all marquee rows reliably using querySelectorAll
+            const rows = document.querySelectorAll('.clients-marquee-row');
+            if (!rows || rows.length === 0) return;
 
             const isMouseFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-            const tracks = [
-                {
-                    row: row1,
-                    track: track1,
-                    firstGroup: track1.querySelector('.clients-marquee-group'),
-                    baseSpeed: -0.75, // pixels per 60fps frame
+            const tracks = Array.from(rows).map((row, index) => {
+                const track = row.querySelector('.clients-marquee-track');
+                const firstGroup = track ? track.querySelector('.clients-marquee-group') : null;
+                return {
+                    row: row,
+                    track: track,
+                    firstGroup: firstGroup,
+                    baseSpeed: index === 0 ? -0.75 : -0.62,
                     offset: 0,
                     groupWidth: 0,
                     velocity: 0,
                     isDragging: false,
                     isHovered: false,
-                    pointerId: null,
-                    startX: 0,
-                    startY: 0,
-                    lastX: 0,
-                    lastTime: 0,
-                    dragDistance: 0
-                },
-                {
-                    row: row2,
-                    track: track2,
-                    firstGroup: track2.querySelector('.clients-marquee-group'),
-                    baseSpeed: -0.62, // slightly different speed for visual depth
-                    offset: 0,
-                    groupWidth: 0,
-                    velocity: 0,
-                    isDragging: false,
-                    isHovered: false,
-                    pointerId: null,
-                    startX: 0,
-                    startY: 0,
-                    lastX: 0,
-                    lastTime: 0,
-                    dragDistance: 0
-                }
-            ];
+                    // Mobile Touch Tracking
+                    touchStartX: 0,
+                    touchStartY: 0,
+                    lastTouchX: 0,
+                    lastTouchTime: 0,
+                    isTouchHorizontal: null,
+                    touchMoved: false,
+                    // Desktop Mouse Tracking
+                    isMouseDown: false,
+                    mouseStartX: 0,
+                    lastMouseX: 0,
+                    lastMouseTime: 0,
+                    mouseMoved: false
+                };
+            }).filter(t => t.track && t.firstGroup);
+
+            if (tracks.length === 0) return;
 
             function measureWidths() {
                 tracks.forEach(t => {
@@ -4031,102 +4026,158 @@
 
             measureWidths();
             window.addEventListener('resize', measureWidths, { passive: true });
+            setTimeout(measureWidths, 300);
+            setTimeout(measureWidths, 1000);
 
-            // Setup pointer and touch drag handlers on each row
             tracks.forEach(t => {
                 const row = t.row;
-                if (!row) return;
 
-                // Mouse hover pause ONLY on real desktop mice (never on touch screens)
-                if (isMouseFine) {
-                    row.addEventListener('pointerenter', (e) => {
-                        if (e.pointerType === 'mouse') {
-                            t.isHovered = true;
-                        }
-                    });
-                    row.addEventListener('pointerleave', (e) => {
-                        if (e.pointerType === 'mouse') {
-                            t.isHovered = false;
-                        }
-                    });
-                }
-
-                row.addEventListener('pointerdown', (e) => {
-                    // Only primary pointer button
-                    if (e.button !== undefined && e.button !== 0) return;
-                    t.pointerId = e.pointerId;
-                    t.startX = e.clientX;
-                    t.startY = e.clientY;
-                    t.lastX = e.clientX;
-                    t.lastTime = performance.now();
+                // ----------------------------------------------------
+                // 1. MOBILE TOUCH GESTURES (touchstart, touchmove, touchend, touchcancel)
+                // ----------------------------------------------------
+                row.addEventListener('touchstart', (e) => {
+                    if (!e.touches || e.touches.length === 0) return;
+                    const touch = e.touches[0];
+                    t.touchStartX = touch.clientX;
+                    t.touchStartY = touch.clientY;
+                    t.lastTouchX = touch.clientX;
+                    t.lastTouchTime = performance.now();
                     t.velocity = 0;
-                    t.dragDistance = 0;
                     t.isDragging = false;
-                });
+                    t.isTouchHorizontal = null;
+                    t.touchMoved = false;
+                    t.isHovered = false; // ensure touch NEVER leaves a sticky hover state
+                }, { passive: true });
 
-                window.addEventListener('pointermove', (e) => {
-                    if (t.pointerId !== e.pointerId) return;
-                    const deltaX = e.clientX - t.lastX;
-                    const totalDx = e.clientX - t.startX;
-                    const totalDy = e.clientY - t.startY;
-                    t.dragDistance = Math.hypot(totalDx, totalDy);
+                row.addEventListener('touchmove', (e) => {
+                    if (!e.touches || e.touches.length === 0) return;
+                    const touch = e.touches[0];
+                    const currentX = touch.clientX;
+                    const currentY = touch.clientY;
+                    const deltaX = currentX - t.lastTouchX;
+                    const totalDx = currentX - t.touchStartX;
+                    const totalDy = currentY - t.touchStartY;
 
-                    if (!t.isDragging) {
-                        // Check if intent is horizontal swipe (allows vertical page scroll on phones)
-                        if (Math.abs(totalDx) > 6 && Math.abs(totalDx) > Math.abs(totalDy)) {
-                            t.isDragging = true;
-                            row.classList.add('is-dragging');
-                            try {
-                                row.setPointerCapture(e.pointerId);
-                            } catch (err) {}
+                    // Detect intent: horizontal drag vs vertical page scroll
+                    if (t.isTouchHorizontal === null) {
+                        if (Math.abs(totalDx) > 4 || Math.abs(totalDy) > 4) {
+                            t.isTouchHorizontal = Math.abs(totalDx) >= Math.abs(totalDy);
                         }
                     }
 
-                    if (t.isDragging) {
-                        if (e.cancelable) e.preventDefault();
+                    if (t.isTouchHorizontal === true) {
+                        if (e.cancelable) {
+                            e.preventDefault(); // lock vertical page scroll during horizontal carousel drag
+                        }
+                        t.isDragging = true;
+                        t.touchMoved = true;
+                        row.classList.add('is-dragging');
+
                         t.offset += deltaX;
 
-                        // Seamless continuous wrap in both directions
+                        // Continuous bidirectional loop wrap
                         if (t.groupWidth > 0) {
                             while (t.offset <= -t.groupWidth) t.offset += t.groupWidth;
                             while (t.offset > 0) t.offset -= t.groupWidth;
                         }
 
                         const now = performance.now();
-                        const dt = Math.max(1, now - t.lastTime);
-                        t.velocity = (deltaX / dt) * 16.66; // normalize velocity
-                        t.lastX = e.clientX;
-                        t.lastTime = now;
+                        const dt = Math.max(1, now - t.lastTouchTime);
+                        t.velocity = (deltaX / dt) * 16.66;
+                        t.lastTouchX = currentX;
+                        t.lastTouchTime = now;
 
                         t.track.style.transform = `translate3d(${t.offset}px, 0, 0)`;
                     }
                 }, { passive: false });
 
-                function endDrag(e) {
-                    if (t.pointerId === e.pointerId) {
-                        if (t.isDragging) {
-                            t.isDragging = false;
-                            row.classList.remove('is-dragging');
-                            try {
-                                row.releasePointerCapture(e.pointerId);
-                            } catch (err) {}
-                            // Smooth momentum clamp
-                            t.velocity = Math.max(-26, Math.min(26, t.velocity));
+                const handleTouchEnd = () => {
+                    if (t.isDragging) {
+                        t.isDragging = false;
+                        row.classList.remove('is-dragging');
+                        // Clamp release flick velocity so it doesn't spin uncontrollably
+                        t.velocity = Math.max(-26, Math.min(26, t.velocity));
+                    }
+                    t.isTouchHorizontal = null;
+                    t.isHovered = false; // Immediately resumes auto-run on touch release!
+                };
+
+                row.addEventListener('touchend', handleTouchEnd, { passive: true });
+                row.addEventListener('touchcancel', handleTouchEnd, { passive: true });
+
+                // ----------------------------------------------------
+                // 2. DESKTOP MOUSE DRAGGING & HOVER
+                // ----------------------------------------------------
+                if (isMouseFine) {
+                    row.addEventListener('mouseenter', () => {
+                        if (!t.isMouseDown) {
+                            t.isHovered = true;
                         }
-                        t.pointerId = null;
-                        // On mobile / touch, ALWAYS clear hover so carousel never stays paused
-                        if (e.pointerType !== 'mouse') {
+                    });
+                    row.addEventListener('mouseleave', () => {
+                        if (!t.isMouseDown) {
                             t.isHovered = false;
                         }
-                    }
+                    });
                 }
 
-                window.addEventListener('pointerup', endDrag);
-                window.addEventListener('pointercancel', endDrag);
+                row.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return; // left click only
+                    t.isMouseDown = true;
+                    t.mouseStartX = e.clientX;
+                    t.lastMouseX = e.clientX;
+                    t.lastMouseTime = performance.now();
+                    t.velocity = 0;
+                    t.isDragging = false;
+                    t.mouseMoved = false;
+                    t.isHovered = false;
+                });
 
-                // Prevent accidental card click if the user swiped
+                window.addEventListener('mousemove', (e) => {
+                    if (!t.isMouseDown) return;
+                    const deltaX = e.clientX - t.lastMouseX;
+                    const totalDx = e.clientX - t.mouseStartX;
+
+                    if (Math.abs(totalDx) > 3) {
+                        t.isDragging = true;
+                        t.mouseMoved = true;
+                        row.classList.add('is-dragging');
+                    }
+
+                    if (t.isDragging) {
+                        t.offset += deltaX;
+
+                        // Continuous bidirectional loop wrap
+                        if (t.groupWidth > 0) {
+                            while (t.offset <= -t.groupWidth) t.offset += t.groupWidth;
+                            while (t.offset > 0) t.offset -= t.groupWidth;
+                        }
+
+                        const now = performance.now();
+                        const dt = Math.max(1, now - t.lastMouseTime);
+                        t.velocity = (deltaX / dt) * 16.66;
+                        t.lastMouseX = e.clientX;
+                        t.lastMouseTime = now;
+
+                        t.track.style.transform = `translate3d(${t.offset}px, 0, 0)`;
+                    }
+                });
+
+                window.addEventListener('mouseup', () => {
+                    if (t.isMouseDown) {
+                        t.isMouseDown = false;
+                        row.classList.remove('is-dragging');
+                        if (t.isDragging) {
+                            t.isDragging = false;
+                            t.velocity = Math.max(-26, Math.min(26, t.velocity));
+                        }
+                        t.isHovered = false;
+                    }
+                });
+
+                // Prevent click on cards when dragging
                 row.addEventListener('click', (e) => {
-                    if (t.dragDistance > 6) {
+                    if (t.touchMoved || t.mouseMoved) {
                         e.preventDefault();
                         e.stopPropagation();
                     }
@@ -4140,7 +4191,7 @@
             if (navRightBtn) {
                 navRightBtn.addEventListener('click', () => {
                     tracks.forEach(t => {
-                        t.velocity += 15; // Smooth acceleration to the right
+                        t.velocity += 15;
                     });
                 });
             }
@@ -4148,12 +4199,12 @@
             if (navLeftBtn) {
                 navLeftBtn.addEventListener('click', () => {
                     tracks.forEach(t => {
-                        t.velocity -= 15; // Smooth acceleration to the left
+                        t.velocity -= 15;
                     });
                 });
             }
 
-            // High performance requestAnimationFrame loop
+            // High performance requestAnimationFrame render loop
             let lastFrameTime = performance.now();
             function loop(now) {
                 const dt = Math.min(34, now - lastFrameTime);
@@ -4168,13 +4219,13 @@
                     }
 
                     if (!t.isDragging) {
-                        // Apply inertia momentum
+                        // Apply smooth inertia friction decay
                         if (Math.abs(t.velocity) > 0.12) {
                             t.offset += t.velocity * timeRatio;
-                            t.velocity *= Math.pow(0.92, timeRatio); // smooth decay
+                            t.velocity *= Math.pow(0.92, timeRatio);
                         } else {
                             t.velocity = 0;
-                            // Regular auto-scroll when not hovering and animations are enabled
+                            // Regular auto-scroll when not hovering and animations enabled
                             if (!t.isHovered && !isStopAnimations) {
                                 t.offset += t.baseSpeed * timeRatio;
                             }
